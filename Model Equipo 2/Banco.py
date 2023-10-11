@@ -6,8 +6,12 @@ from CuentaFF import CuentaFF
 
 class Banco():
     def __init__(self):
-        listaCuentaSimple = []
-        listaCuentaFF = []
-        listaCuentaPF = []
-        listaCliente = []
-        listaComercial = []
+        self.listaCuentaSimple = []
+        self.listaCuentaFF = []
+        self.listaCuentaPF = []
+        self.listaCliente = []
+        self.listaComercial = []
+
+    def ingresarCliente(self, nombre, sexo, ci, centro_trabajo, ocupacion, salario):
+        cliente = Cliente(nombre, sexo, ci, centro_trabajo, ocupacion, salario)
+        self.listaCliente.append(cliente)
