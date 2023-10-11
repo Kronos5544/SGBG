@@ -5,8 +5,9 @@ from CuentaPF import CuentaPL
 from CuentaFF import CuentaFF
 
 class Banco():
-    listaCuentaSimple = []
-    listaCuantaFF = []
-    listaCuentaPF = []
-    listaCliente = []
-    listaComercial = []
+    def __init__(self):
+        listaCuentaSimple = []
+        listaCuentaFF = []
+        listaCuentaPF = []
+        listaCliente = []
+        listaComercial = []

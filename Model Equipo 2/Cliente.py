@@ -1,7 +1,8 @@
 from Persona import Persona
 
 class Cliente(Persona):
-    def __init__(self, centro_trabajo, ocupacion, salario):
+    def __init__(self, nombre, sexo, ci, centro_trabajo, ocupacion, salario):
+        super().__init__(nombre, sexo, ci)
         self.__centro_trabajo = centro_trabajo
         self.__ocupacion = ocupacion
         self.__salario = salario

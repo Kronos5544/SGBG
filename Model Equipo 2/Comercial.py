@@ -1,7 +1,8 @@
 from Persona import Persona
 
 class Comercial(Persona):
-    def __init__(self, anios_ex):
+    def __init__(self,nombre, sexo, ci, anios_ex):
+        super().__init__(nombre, sexo, ci)
         self.__anios_ex = anios_ex
 
     @property
