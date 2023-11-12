@@ -1,13 +1,15 @@
+import datetime
+
 class CuentaSimple:
-    def __init__(self, num_cuenta, cliente, datos_comercial, saldo, saldo_cup, tipo_moneda, fecha_apertura, fecha_ult_retiro):
+    def __init__(self, num_cuenta, cliente, datos_comercial, saldo, tipo_moneda, fecha_apertura, fecha_ult_retiro):
         self.__num_cuenta = num_cuenta
         self.__cliente = cliente
         self.__datos_comercial = datos_comercial
         self.__saldo = saldo
-        self.__saldo_cup = saldo_cup
+        self.__saldo_cup = 0
         self.__tipo_moneda = tipo_moneda
-        self.__fecha_apertura = fecha_apertura
-        self.__fecha_ult_retiro = fecha_ult_retiro
+        self.__fecha_apertura = datetime.date.fromisoformat(fecha_apertura)
+        self.__fecha_ult_retiro = datetime.date.fromisoformat(fecha_ult_retiro)
         
     @property
     def num_cuenta(self):
