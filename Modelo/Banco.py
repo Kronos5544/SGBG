@@ -1,6 +1,7 @@
 from Comercial import Comercial
 from Cliente import Cliente
 from CuentaSimple import CuentaSimple
+<<<<<<< HEAD
 from CuentaPF import CuentaPF
 from CuentaFF import CuentaFF
 
@@ -350,3 +351,14 @@ class Banco():
                 anios_ex = int(lista[3].strip())
                 comercial = Comercial(nombre, sexo, ci, anios_ex)
                 self.ingresarComercial(comercial)
+=======
+from CuentaPF import CuentaPL
+from CuentaFF import CuentaFF
+
+class Banco():
+    listaCuentaSimple = []
+    listaCuantaFF = []
+    listaCuentaPF = []
+    listaCliente = []
+    listaComercial = []
+>>>>>>> master
