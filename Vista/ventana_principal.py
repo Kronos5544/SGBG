@@ -11,6 +11,7 @@ class MainWindow(QMainWindow):
 
         self.actionSalir.triggered.connect(self.close)
         self.actionAcerca_de.triggered.connect(self.__presentador.acerca_de)
+        self.actionClientes.triggered.connect(self.__presentador.crud_clientes)
 
     def resizeEvent(self, a0: QResizeEvent):
         logo = QPixmap('./Vista/media/logo.png')
