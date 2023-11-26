@@ -10,7 +10,7 @@ class MainWindow(QMainWindow):
         uic.loadUi('Vista/ui/ventana_principal.ui', self)
 
         self.actionSalir.triggered.connect(self.close)
-        self.actionAcerca_de.triggered.connect(self.close)
+        self.actionAcerca_de.triggered.connect(self.__presentador.acerca_de)
 
     def resizeEvent(self, a0: QResizeEvent):
         logo = QPixmap('./Vista/media/logo.png')
