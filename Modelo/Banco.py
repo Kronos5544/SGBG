@@ -1,8 +1,8 @@
-from Comercial import Comercial
-from Cliente import Cliente
-from CuentaSimple import CuentaSimple
-from CuentaPF import CuentaPF
-from CuentaFF import CuentaFF
+from Modelo.Comercial import Comercial
+from Modelo.Cliente import Cliente
+from Modelo.CuentaSimple import CuentaSimple
+from Modelo.CuentaPF import CuentaPF
+from Modelo.CuentaFF import CuentaFF
 
 class Banco():
     def __init__(self):
@@ -71,19 +71,48 @@ class Banco():
     
     #Create
     def ingresarCuentaSimple(self, cuenta_simp):
-        self.__listaCuentaSimple.append(cuenta_simp)
+        ind_comp = self.buscarCuentaSimple(cuenta_simp.num_cuenta)
+        ind_comp2 = self.buscarCuentaPF(cuenta_simp.num_cuenta)
+        ind_comp3 = self.buscarCuentaFF(cuenta_simp.num_cuenta)
+
+        if (ind_comp != None) or (ind_comp2 != None) or (ind_comp3 != None):
+            raise Exception("La cuenta ya existe en el repositorio")
+        else:
+            self.__listaCuentaSimple.append(cuenta_simp)
 
     def ingresarCuentaFF(self, cuenta_ff):
-        self.__listaCuentaFF.append(cuenta_ff)    
+        ind_comp2 = self.buscarCuentaSimple(cuenta_ff.num_cuenta)
+        ind_comp3 = self.buscarCuentaPF(cuenta_ff.num_cuenta)
+        ind_comp = self.buscarCuentaFF(cuenta_ff.num_cuenta)
 
+        if (ind_comp != None) or (ind_comp2 != None) or (ind_comp3 != None):
+            raise Exception("La cuenta ya existe en el repositorio")
+        else:
+            self.__listaCuentaFF.append(cuenta_ff)
+    
     def ingresarCuentaPF(self, cuenta_pf):
-        self.__listaCuentaPF.append(cuenta_pf)
+        ind_comp2 = self.buscarCuentaSimple(cuenta_pf.num_cuenta)
+        ind_comp = self.buscarCuentaPF(cuenta_pf.num_cuenta)
+        ind_comp3 = self.buscarCuentaFF(cuenta_pf.num_cuenta)
+
+        if (ind_comp != None) or (ind_comp2 != None) or (ind_comp3 != None):
+            raise Exception("La cuenta ya existe en el repositorio")
+        else:
+            self.__listaCuentaPF.append(cuenta_pf)
        
     def ingresarCliente(self, cliente):
-        self.__listaCliente.append(cliente)
+        ind_comp = self.buscarCliente(cliente.ci)
+        if ind_comp == None:
+            self.__listaCliente.append(cliente)
+        else:
+            raise Exception("El cliente ya existe en el repositorio")
 
     def ingresarComercial(self, comercial):
-        self.__listaComercial.append(comercial)
+        ind_comp = self.buscarComercial(comercial.ci)
+        if ind_comp == None:
+            self.__listaComercial.append(comercial)
+        else:
+            raise Exception("El comercial ya existe en el repositorio")
 
     #Delete
     def eliminarCuentaSimple(self, num):

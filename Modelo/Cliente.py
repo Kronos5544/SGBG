@@ -1,4 +1,4 @@
-from Persona import Persona
+from Modelo.Persona import Persona
 
 class Cliente(Persona):
     def __init__(self, nombre, sexo, ci, centro_trabajo, ocupacion, salario):

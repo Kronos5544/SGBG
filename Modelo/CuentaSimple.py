@@ -1,4 +1,4 @@
-import datetime
+from datetime import date
 
 class CuentaSimple:
     def __init__(self, num_cuenta, cliente, datos_comercial, saldo, tipo_moneda, fecha_apertura, fecha_ult_retiro):
@@ -8,8 +8,8 @@ class CuentaSimple:
         self.__saldo = saldo
         self.__saldo_cup = 0
         self.__tipo_moneda = tipo_moneda
-        self.__fecha_apertura = datetime.date.fromisoformat(fecha_apertura)
-        self.__fecha_ult_retiro = datetime.date.fromisoformat(fecha_ult_retiro)
+        self.__fecha_apertura = date.fromisoformat(fecha_apertura)
+        self.__fecha_ult_retiro = date.fromisoformat(fecha_ult_retiro)
         
     @property
     def num_cuenta(self):
