@@ -25,3 +25,6 @@ class PresentadorPrincipal:
     def crud_clientes(self):
         crud_clientes = PresentadorCliente(self.__banco)
         crud_clientes.iniciar()
+
+    def cargar_BD(self):
+        self.__banco.CargarBDCliente()

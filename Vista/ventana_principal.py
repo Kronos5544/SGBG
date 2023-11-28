@@ -9,9 +9,10 @@ class MainWindow(QMainWindow):
         QMainWindow.__init__(self)
         uic.loadUi('Vista/ui/ventana_principal.ui', self)
 
-        self.actionSalir.triggered.connect(self.close)
-        self.actionAcerca_de.triggered.connect(self.__presentador.acerca_de)
-        self.actionClientes.triggered.connect(self.__presentador.crud_clientes)
+        self.actionSalir.triggered.connect(self.close) #Cerrar ventana al presionar salir
+        self.actionAcerca_de.triggered.connect(self.__presentador.acerca_de) #Cargar la ventana acerca de al presionar botón acerca de
+        self.actionClientes.triggered.connect(self.__presentador.crud_clientes) #Cargar la ventana de gestión de clientes
+        self.actionCargar.triggered.connect(self.__presentador.cargar_BD)
 
     def resizeEvent(self, a0: QResizeEvent):
         logo = QPixmap('./Vista/media/logo.png')

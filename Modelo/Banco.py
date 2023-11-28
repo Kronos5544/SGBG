@@ -343,7 +343,7 @@ class Banco():
                 fichero.write(f"{nombre}, {sexo}, {ci}, {centro_trabajo}, {ocupacion}, {salario}\n")
     
     def CargarBDCliente(self):
-        with open('./BD/clientes.txt', 'r', encoding='utf-8') as fichero:
+        with open('./Modelo/BD/clientes.txt', 'r', encoding='utf-8') as fichero:
             contador = int(fichero.readline().strip()) 
             for i in range(contador):
                 lista = fichero.readline().split(", ")
