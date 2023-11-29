@@ -30,6 +30,7 @@ class PresentadorPrincipal:
 
     def cargar_BD(self):
         self.__banco.CargarBDCliente()
+        self.__banco.CargarBDCuentaSimp()
 
 #Iniciar Gestionar comerciales
     def crud_comerciales(self):

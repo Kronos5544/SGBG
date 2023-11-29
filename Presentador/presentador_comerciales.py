@@ -12,13 +12,13 @@ class PresentadorComercial:
 
     def cargar_datos(self):
         self.__vista.vaciar_tabla()
-        for cliente in self.__banco.listaComercial:
+        for comercial in self.__banco.listaComercial:
             i = self.__vista.tabla.rowCount()
             self.__vista.tabla.insertRow(i)
-            self.__vista.agregar_elemento_tabla(i, 0, cliente.nombre)
-            self.__vista.agregar_elemento_tabla(i, 1, cliente.sexo)
-            self.__vista.agregar_elemento_tabla(i, 2, cliente.ci)
-            self.__vista.agregar_elemento_tabla(i, 3, str(cliente.anios_ex))
+            self.__vista.agregar_elemento_tabla(i, 0, comercial.nombre)
+            self.__vista.agregar_elemento_tabla(i, 1, comercial.sexo)
+            self.__vista.agregar_elemento_tabla(i, 2, comercial.ci)
+            self.__vista.agregar_elemento_tabla(i, 3, str(comercial.anios_ex))
         self.__vista.tabla.resizeColumnsToContents()
 
     def rellenar_form_x_tabla(self):
