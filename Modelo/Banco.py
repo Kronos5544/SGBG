@@ -3,6 +3,7 @@ from Modelo.Cliente import Cliente
 from Modelo.CuentaSimple import CuentaSimple
 from Modelo.CuentaPF import CuentaPF
 from Modelo.CuentaFF import CuentaFF
+from datetime import date
 
 class Banco():
     def __init__(self):
@@ -59,7 +60,18 @@ class Banco():
             if self.__listaCuentaPF[i].num_cuenta == num:
                 return i
         return None
-
+    
+    def validarCI(self, ci):
+        try:
+            hoy = date.today()
+            annio = 1900 + int(ci[0:2])
+            mes = int(ci[2:4])
+            dia = int(ci[4:6])
+            if (hoy.year - annio) > 100:
+                annio += 100
+            date(annio, mes, dia)
+        except Exception:
+            raise Exception("El Carnet de identidad es inválido")
 
     def buscarCuentaFF(self, num):
         for i in range(len(self.__listaCuentaFF)):
@@ -101,6 +113,7 @@ class Banco():
             self.__listaCuentaPF.append(cuenta_pf)
        
     def ingresarCliente(self, cliente):
+        self.validarCI(cliente.ci)
         ind_comp = self.buscarCliente(cliente.ci)
         if ind_comp == None:
             self.__listaCliente.append(cliente)
@@ -108,6 +121,7 @@ class Banco():
             raise Exception("El cliente ya existe en el repositorio")
 
     def ingresarComercial(self, comercial):
+        self.validarCI(comercial.ci)
         ind_comp = self.buscarComercial(comercial.ci)
         if ind_comp == None:
             self.__listaComercial.append(comercial)
@@ -159,6 +173,7 @@ class Banco():
     
     #Update
     def actualizarCliente(self, ci, cliente):
+        self.validarCI(cliente.ci)
         indice = self.buscarCliente(ci)
         if indice == None:
             raise Exception("No existe el cliente que desea modificar")
@@ -172,6 +187,7 @@ class Banco():
             raise Exception("El cliente ya existe en el repositorio")
         
     def actualizarComercial(self, ci, comercial):
+        self.validarCI(comercial.ci)
         indice = self.buscarComercial(ci)
         if indice == None:
             raise Exception("No existe el comercial que desea modificar")
