@@ -3,6 +3,7 @@ from PyQt5.QtWidgets import QApplication
 from Modelo.Banco import Banco
 from Presentador.presentador_clientes import PresentadorCliente
 from Presentador.presentador_comerciales import PresentadorComercial
+from Presentador.presentador_cuentas_simples import PresentadorCuentaSimple
 from Vista.ventana_principal import MainWindow
 from Vista.acerca_de import AcercaDe
 
@@ -34,3 +35,8 @@ class PresentadorPrincipal:
     def crud_comerciales(self):
         crud_comerciales = PresentadorComercial(self.__banco)
         crud_comerciales.iniciar()
+
+#Iniciar Gestionar cuentas simples
+    def crud_cuentas_simples(self):
+        crud_cuentas_simples = PresentadorCuentaSimple(self.__banco)
+        crud_cuentas_simples.iniciar()
