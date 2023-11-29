@@ -42,7 +42,7 @@ class GestionarCliente(QWidget):
         if value == "M":
             self.rbtn_mas.setChecked(True)
         else:
-            self.rbtn_mas.setChecked(True)
+            self.rbtn_fem.setChecked(True)
             
         
     @property
