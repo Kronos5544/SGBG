@@ -2,6 +2,7 @@ import sys
 from PyQt5.QtWidgets import QApplication
 from Modelo.Banco import Banco
 from Presentador.presentador_clientes import PresentadorCliente
+from Presentador.presentador_comerciales import PresentadorComercial
 from Vista.ventana_principal import MainWindow
 from Vista.acerca_de import AcercaDe
 
@@ -28,3 +29,8 @@ class PresentadorPrincipal:
 
     def cargar_BD(self):
         self.__banco.CargarBDCliente()
+
+#Iniciar Gestionar comerciales
+    def crud_comerciales(self):
+        crud_comerciales = PresentadorComercial(self.__banco)
+        crud_comerciales.iniciar()

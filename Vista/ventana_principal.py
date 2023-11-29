@@ -12,6 +12,7 @@ class MainWindow(QMainWindow):
         self.actionSalir.triggered.connect(self.close) #Cerrar ventana al presionar salir
         self.actionAcerca_de.triggered.connect(self.__presentador.acerca_de) #Cargar la ventana acerca de al presionar botón acerca de
         self.actionClientes.triggered.connect(self.__presentador.crud_clientes) #Cargar la ventana de gestión de clientes
+        self.actionComerciales.triggered.connect(self.__presentador.crud_comerciales) #Cargar la ventana de gestión de clientes
         self.actionCargar.triggered.connect(self.__presentador.cargar_BD)
 
     def resizeEvent(self, a0: QResizeEvent):
