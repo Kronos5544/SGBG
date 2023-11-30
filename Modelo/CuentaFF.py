@@ -1,4 +1,4 @@
-from CuentaSimple import CuentaSimple
+from Modelo.CuentaSimple import CuentaSimple
 
 class CuentaFF(CuentaSimple):
     def __init__(self, num_cuenta, cliente, datos_comercial, saldo, tipo_moneda, fecha_apertura, fecha_ult_retiro, cuota_mensual):

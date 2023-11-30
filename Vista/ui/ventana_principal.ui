@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>359</width>
+    <height>273</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>359</width>
+    <height>273</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <property name="autoFillBackground">
+   <bool>true</bool>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">url (:/cct/logo.png)</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <property name="autoFillBackground">
+    <bool>false</bool>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">border-image: url(:/cct/logo.png);</string>
+   </property>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>359</width>
+     <height>18</height>
+    </rect>
+   </property>
+   <property name="mouseTracking">
+    <bool>true</bool>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(170, 0, 0);</string>
+   </property>
+   <widget class="QMenu" name="menuArchivo">
+    <property name="title">
+     <string>Archivo</string>
+    </property>
+    <addaction name="actionGuardar"/>
+    <addaction name="actionCargar"/>
+    <addaction name="actionSalir"/>
+   </widget>
+   <widget class="QMenu" name="menuCRUD">
+    <property name="title">
+     <string>CRUD</string>
+    </property>
+    <addaction name="actionClientes"/>
+    <addaction name="actionComerciales"/>
+    <addaction name="actionCuentas_Simples"/>
+    <addaction name="actionCuentas_de_Plazo_Fijo"/>
+    <addaction name="actionCuentas_de_Formacion_de_Fondos"/>
+   </widget>
+   <widget class="QMenu" name="menuHerramientas">
+    <property name="title">
+     <string>Herramientas</string>
+    </property>
+    <addaction name="actionCalcular_Interes"/>
+    <addaction name="actionDepositar"/>
+    <addaction name="actionInteres_Plazo_Fijo_5a"/>
+    <addaction name="actionPropietario_Cuenta_Mayor_Saldo"/>
+    <addaction name="actionCuenta_Plazo_Fijo_mas_10mil"/>
+   </widget>
+   <widget class="QMenu" name="menuAyuda">
+    <property name="title">
+     <string>Ayuda</string>
+    </property>
+    <addaction name="actionAcerca_de"/>
+   </widget>
+   <addaction name="menuArchivo"/>
+   <addaction name="menuCRUD"/>
+   <addaction name="menuHerramientas"/>
+   <addaction name="menuAyuda"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionSalir">
+   <property name="text">
+    <string>Salir</string>
+   </property>
+  </action>
+  <action name="actionInsertar_Elemento">
+   <property name="text">
+    <string>Insertar Elemento</string>
+   </property>
+  </action>
+  <action name="actionInfo">
+   <property name="text">
+    <string>Info</string>
+   </property>
+  </action>
+  <action name="actionAcerca_de">
+   <property name="text">
+    <string>Acerca de</string>
+   </property>
+  </action>
+  <action name="actionCuenta_Simple">
+   <property name="text">
+    <string>Cuenta Simple</string>
+   </property>
+  </action>
+  <action name="actionCuenta_Formacion_de_Fondos">
+   <property name="text">
+    <string>Cuenta Formacion de Fondos</string>
+   </property>
+  </action>
+  <action name="actionCuenta_Plazo_Fijo">
+   <property name="text">
+    <string>Cuenta Plazo Fijo</string>
+   </property>
+  </action>
+  <action name="actionCuenta_Simple_2">
+   <property name="text">
+    <string>Cuenta Simple</string>
+   </property>
+  </action>
+  <action name="actionCuenta_Formacion_de_Fondos_2">
+   <property name="text">
+    <string>Cuenta Formacion de Fondos</string>
+   </property>
+  </action>
+  <action name="actionCuenta_Plazo_Fijo_2">
+   <property name="text">
+    <string>Cuenta Plazo Fijo</string>
+   </property>
+  </action>
+  <action name="actionCuenta_Simple_3">
+   <property name="text">
+    <string>Cuenta Simple</string>
+   </property>
+  </action>
+  <action name="actionCuenta_Simple_4">
+   <property name="text">
+    <string>Cuenta Simple</string>
+   </property>
+  </action>
+  <action name="actionCuenta_Formacion_de_Fondos_3">
+   <property name="text">
+    <string>Cuenta Formacion de Fondos</string>
+   </property>
+  </action>
+  <action name="actionCuenta_Plazo_Fijo_3">
+   <property name="text">
+    <string>Cuenta Plazo Fijo</string>
+   </property>
+  </action>
+  <action name="actionCuenta_Formacion_de_Fondos_4">
+   <property name="text">
+    <string>Cuenta Formacion de Fondos</string>
+   </property>
+  </action>
+  <action name="actionCuenta_Plazo_Fijo_4">
+   <property name="text">
+    <string>Cuenta Plazo Fijo</string>
+   </property>
+  </action>
+  <action name="actionCliente">
+   <property name="text">
+    <string>Cliente</string>
+   </property>
+  </action>
+  <action name="actionComercial">
+   <property name="text">
+    <string>Comercial</string>
+   </property>
+  </action>
+  <action name="actionCliente_2">
+   <property name="text">
+    <string>Cliente</string>
+   </property>
+  </action>
+  <action name="actionComercial_2">
+   <property name="text">
+    <string>Comercial</string>
+   </property>
+  </action>
+  <action name="actionCliente_3">
+   <property name="text">
+    <string>Cliente</string>
+   </property>
+  </action>
+  <action name="actionComercial_3">
+   <property name="text">
+    <string>Comercial</string>
+   </property>
+  </action>
+  <action name="actionCliente_4">
+   <property name="text">
+    <string>Cliente</string>
+   </property>
+  </action>
+  <action name="actionComercial_4">
+   <property name="text">
+    <string>Comercial</string>
+   </property>
+  </action>
+  <action name="actionCalcular_Interes">
+   <property name="text">
+    <string>Calcular Interes</string>
+   </property>
+  </action>
+  <action name="actionDepositar">
+   <property name="text">
+    <string>Depositar</string>
+   </property>
+  </action>
+  <action name="actionInteres_Plazo_Fijo_5a">
+   <property name="text">
+    <string>Interes Plazo Fijo 5a</string>
+   </property>
+  </action>
+  <action name="actionPropietario_Cuenta_Mayor_Saldo">
+   <property name="text">
+    <string>Propietario Cuenta Mayor Saldo</string>
+   </property>
+  </action>
+  <action name="actionCuenta_Plazo_Fijo_mas_10mil">
+   <property name="text">
+    <string>Cuenta Plazo Fijo +10mil</string>
+   </property>
+  </action>
+  <action name="actionGuardar">
+   <property name="text">
+    <string>Guardar</string>
+   </property>
+  </action>
+  <action name="actionCargar">
+   <property name="text">
+    <string>Cargar</string>
+   </property>
+  </action>
+  <action name="actionCuentas_Simples">
+   <property name="text">
+    <string>Cuentas Simples</string>
+   </property>
+  </action>
+  <action name="actionCuentas_de_Plazo_Fijo">
+   <property name="text">
+    <string>Cuentas de Plazo Fijo</string>
+   </property>
+  </action>
+  <action name="actionCuentas_de_Formacion_de_Fondos">
+   <property name="text">
+    <string>Cuentas de Formacion de Fondos</string>
+   </property>
+  </action>
+  <action name="actionClientes">
+   <property name="text">
+    <string>Clientes</string>
+   </property>
+  </action>
+  <action name="actionComerciales">
+   <property name="text">
+    <string>Comerciales</string>
+   </property>
+  </action>
+ </widget>
+ <resources>
+  <include location="../media/logo.qrc"/>
+ </resources>
+ <connections/>
+</ui>

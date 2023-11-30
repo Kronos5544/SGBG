@@ -1,8 +1,9 @@
-from Comercial import Comercial
-from Cliente import Cliente
-from CuentaSimple import CuentaSimple
-from CuentaPF import CuentaPF
-from CuentaFF import CuentaFF
+from Modelo.Comercial import Comercial
+from Modelo.Cliente import Cliente
+from Modelo.CuentaSimple import CuentaSimple
+from Modelo.CuentaPF import CuentaPF
+from Modelo.CuentaFF import CuentaFF
+from datetime import date
 
 class Banco():
     def __init__(self):
@@ -59,7 +60,18 @@ class Banco():
             if self.__listaCuentaPF[i].num_cuenta == num:
                 return i
         return None
-
+    
+    def validarCI(self, ci):
+        try:
+            hoy = date.today()
+            annio = 1900 + int(ci[0:2])
+            mes = int(ci[2:4])
+            dia = int(ci[4:6])
+            if (hoy.year - annio) > 100:
+                annio += 100
+            date(annio, mes, dia)
+        except Exception:
+            raise Exception("El Carnet de identidad es inválido")
 
     def buscarCuentaFF(self, num):
         for i in range(len(self.__listaCuentaFF)):
@@ -71,19 +83,62 @@ class Banco():
     
     #Create
     def ingresarCuentaSimple(self, cuenta_simp):
-        self.__listaCuentaSimple.append(cuenta_simp)
+        if self.buscarCliente(cuenta_simp.cliente) == None:
+            raise Exception("El cliente no existe, verifique que lo ha ingresado correctamente o cree uno nuevo")
+        if self.buscarComercial(cuenta_simp.datos_comercial) == None:
+            raise Exception("El comercial no existe, verifique que lo ha ingresado correctamente o cree uno nuevo")
+        ind_comp = self.buscarCuentaSimple(cuenta_simp.num_cuenta)
+        ind_comp2 = self.buscarCuentaPF(cuenta_simp.num_cuenta)
+        ind_comp3 = self.buscarCuentaFF(cuenta_simp.num_cuenta)
+
+        if (ind_comp != None) or (ind_comp2 != None) or (ind_comp3 != None):
+            raise Exception("La cuenta ya existe en el repositorio")
+        else:
+            self.__listaCuentaSimple.append(cuenta_simp)
 
     def ingresarCuentaFF(self, cuenta_ff):
-        self.__listaCuentaFF.append(cuenta_ff)    
+        if self.buscarCliente(cuenta_ff.cliente) == None:
+            raise Exception("El cliente no existe, verifique que lo ha ingresado correctamente o cree uno nuevo")
+        if self.buscarComercial(cuenta_ff.datos_comercial) == None:
+            raise Exception("El comercial no existe, verifique que lo ha ingresado correctamente o cree uno nuevo")
+        ind_comp2 = self.buscarCuentaSimple(cuenta_ff.num_cuenta)
+        ind_comp3 = self.buscarCuentaPF(cuenta_ff.num_cuenta)
+        ind_comp = self.buscarCuentaFF(cuenta_ff.num_cuenta)
 
+        if (ind_comp != None) or (ind_comp2 != None) or (ind_comp3 != None):
+            raise Exception("La cuenta ya existe en el repositorio")
+        else:
+            self.__listaCuentaFF.append(cuenta_ff)
+    
     def ingresarCuentaPF(self, cuenta_pf):
-        self.__listaCuentaPF.append(cuenta_pf)
+        if self.buscarCliente(cuenta_pf.cliente) == None:
+            raise Exception("El cliente no existe, verifique que lo ha ingresado correctamente o cree uno nuevo")
+        if self.buscarComercial(cuenta_pf.datos_comercial) == None:
+            raise Exception("El comercial no existe, verifique que lo ha ingresado correctamente o cree uno nuevo")
+        ind_comp2 = self.buscarCuentaSimple(cuenta_pf.num_cuenta)
+        ind_comp = self.buscarCuentaPF(cuenta_pf.num_cuenta)
+        ind_comp3 = self.buscarCuentaFF(cuenta_pf.num_cuenta)
+
+        if (ind_comp != None) or (ind_comp2 != None) or (ind_comp3 != None):
+            raise Exception("La cuenta ya existe en el repositorio")
+        else:
+            self.__listaCuentaPF.append(cuenta_pf)
        
     def ingresarCliente(self, cliente):
-        self.__listaCliente.append(cliente)
+        self.validarCI(cliente.ci)
+        ind_comp = self.buscarCliente(cliente.ci)
+        if ind_comp == None:
+            self.__listaCliente.append(cliente)
+        else:
+            raise Exception("El cliente ya existe en el repositorio")
 
     def ingresarComercial(self, comercial):
-        self.__listaComercial.append(comercial)
+        self.validarCI(comercial.ci)
+        ind_comp = self.buscarComercial(comercial.ci)
+        if ind_comp == None:
+            self.__listaComercial.append(comercial)
+        else:
+            raise Exception("El comercial ya existe en el repositorio")
 
     #Delete
     def eliminarCuentaSimple(self, num):
@@ -130,6 +185,7 @@ class Banco():
     
     #Update
     def actualizarCliente(self, ci, cliente):
+        self.validarCI(cliente.ci)
         indice = self.buscarCliente(ci)
         if indice == None:
             raise Exception("No existe el cliente que desea modificar")
@@ -143,6 +199,7 @@ class Banco():
             raise Exception("El cliente ya existe en el repositorio")
         
     def actualizarComercial(self, ci, comercial):
+        self.validarCI(comercial.ci)
         indice = self.buscarComercial(ci)
         if indice == None:
             raise Exception("No existe el comercial que desea modificar")
@@ -159,6 +216,8 @@ class Banco():
         indice = self.buscarCuentaSimple(num)
         if indice == None:
             raise Exception("No existe la cuenta que desea modificar")
+        if self.buscarComercial(cuenta_simp.datos_comercial) == None:
+            raise Exception("El comercial no existe, verifique que lo ha ingresado correctamente o cree uno nuevo")
         ind_comp = self.buscarCuentaSimple(cuenta_simp.num_cuenta)
         ind_comp2 = self.buscarCuentaPF(cuenta_simp.num_cuenta)
         ind_comp3 = self.buscarCuentaFF(cuenta_simp.num_cuenta)
@@ -174,6 +233,8 @@ class Banco():
         indice = self.buscarCuentaPF(num)
         if indice == None:
             raise Exception("No existe la cuenta que desea modificar")
+        if self.buscarComercial(cuenta_pf.datos_comercial) == None:
+            raise Exception("El comercial no existe, verifique que lo ha ingresado correctamente o cree uno nuevo")
         ind_comp2 = self.buscarCuentaSimple(cuenta_pf.num_cuenta)
         ind_comp = self.buscarCuentaPF(cuenta_pf.num_cuenta)
         ind_comp3 = self.buscarCuentaFF(cuenta_pf.num_cuenta)
@@ -188,6 +249,8 @@ class Banco():
         indice = self.buscarCuentaFF(num)
         if indice == None:
             raise Exception("No existe la cuenta que desea modificar")
+        if self.buscarComercial(cuenta_ff.datos_comercial) == None:
+            raise Exception("El comercial no existe, verifique que lo ha ingresado correctamente o cree uno nuevo")
         ind_comp2 = self.buscarCuentaSimple(cuenta_ff.num_cuenta)
         ind_comp3 = self.buscarCuentaPF(cuenta_ff.num_cuenta)
         ind_comp = self.buscarCuentaFF(cuenta_ff.num_cuenta)
@@ -201,7 +264,7 @@ class Banco():
 
     #Cargar y guardar desde Bases de Datos .txt
     def GuardarBDCuentaSimp(self):
-        with open('./BD/cuentas_simp.txt', 'w', encoding='utf-8') as fichero:
+        with open('./Modelo/BD/cuentas_simp.txt', 'w', encoding='utf-8') as fichero:
             contador = len(self.__listaCuentaSimple)
             fichero.write(f"{contador}\n")
             for i in range(contador):
@@ -217,7 +280,8 @@ class Banco():
 
             
     def CargarBDCuentaSimp(self):
-        with open('./BD/cuentas_simp.txt', 'r', encoding='utf-8') as fichero:
+        self.__listaCuentaSimple = []
+        with open('./Modelo/BD/cuentas_simp.txt', 'r', encoding='utf-8') as fichero:
             contador = int(fichero.readline().strip())
             for i in range(contador):
                 lista = fichero.readline().split(", ")
@@ -233,7 +297,7 @@ class Banco():
 
 
     def GuardarBDCuentaFF(self):
-        with open('./BD/cuentas_ff.txt', 'w', encoding='utf-8') as fichero:
+        with open('./Modelo/BD/cuentas_ff.txt', 'w', encoding='utf-8') as fichero:
             contador = len(self.__listaCuentaFF)
             fichero.write(f"{contador}\n")
             for i in range(contador):
@@ -251,7 +315,8 @@ class Banco():
 
 
     def CargarBDCuentaFF(self):
-        with open('./BD/cuentas_ff.txt', 'r', encoding='utf-8') as fichero:
+        self.__listaCuentaFF = []
+        with open('./Modelo/BD/cuentas_ff.txt', 'r', encoding='utf-8') as fichero:
             contador = int(fichero.readline().strip())
             for i in range(contador):
                 lista = fichero.readline().split(", ")
@@ -267,7 +332,7 @@ class Banco():
                 self.__listaCuentaFF.append(cuenta_ff)
 
     def GuardarBDCuentaPF(self):
-        with open('./BD/cuentas_pf.txt', 'w', encoding='utf-8') as fichero:
+        with open('./Modelo/BD/cuentas_pf.txt', 'w', encoding='utf-8') as fichero:
             contador = len(self.__listaCuentaPF)
             fichero.write(f"{contador}\n")
             for i in range(contador):
@@ -283,7 +348,8 @@ class Banco():
                 fichero.write(f"{num_cuenta}, {cliente}, {datos_comercial}, {saldo}, {tipo_moneda}, {fecha_apertura}, {fecha_ult_retiro}, {plazo}\n")
 
     def CargarBDCuentaPF(self):
-        with open('./BD/cuentas_pf.txt', 'r', encoding='utf-8') as fichero:
+        self.__listaCuentaPF = []
+        with open('./Modelo/BD/cuentas_pf.txt', 'r', encoding='utf-8') as fichero:
             contador = int(fichero.readline().strip())
             for i in range(contador):
                 lista = fichero.readline().split(", ")
@@ -300,7 +366,7 @@ class Banco():
 
 
     def GuardarBDCliente(self):
-        with open('./BD/clientes.txt', 'w', encoding='utf-8') as fichero:
+        with open('./Modelo/BD/clientes.txt', 'w', encoding='utf-8') as fichero:
             contador = len(self.__listaCliente)
             fichero.write(f"{contador}\n")
             for i in range(contador):
@@ -314,7 +380,8 @@ class Banco():
                 fichero.write(f"{nombre}, {sexo}, {ci}, {centro_trabajo}, {ocupacion}, {salario}\n")
     
     def CargarBDCliente(self):
-        with open('./BD/clientes.txt', 'r', encoding='utf-8') as fichero:
+        self.__listaCliente = []
+        with open('./Modelo/BD/clientes.txt', 'r', encoding='utf-8') as fichero:
             contador = int(fichero.readline().strip()) 
             for i in range(contador):
                 lista = fichero.readline().split(", ")
@@ -328,7 +395,7 @@ class Banco():
                 self.ingresarCliente(cliente)
     
     def GuardarBDComercial(self):
-        with open('./BD/comerciales.txt', 'w', encoding='utf-8') as fichero:
+        with open('./Modelo/BD/comerciales.txt', 'w', encoding='utf-8') as fichero:
             contador = len(self.__listaComercial)
             fichero.write(f"{contador}\n")
             for i in range(contador):
@@ -340,7 +407,8 @@ class Banco():
                 fichero.write(f"{nombre}, {sexo}, {ci}, {anios_ex}\n")
 
     def CargarBDComercial(self):
-        with open('./BD/comerciales.txt', 'r', encoding='utf-8') as fichero:
+        self.__listaComercial = []
+        with open('./Modelo/BD/comerciales.txt', 'r', encoding='utf-8') as fichero:
             contador = int(fichero.readline().strip()) 
             for i in range(contador):
                 lista = fichero.readline().split(", ")
