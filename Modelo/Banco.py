@@ -280,6 +280,7 @@ class Banco():
 
             
     def CargarBDCuentaSimp(self):
+        self.__listaCuentaSimple = []
         with open('./Modelo/BD/cuentas_simp.txt', 'r', encoding='utf-8') as fichero:
             contador = int(fichero.readline().strip())
             for i in range(contador):
@@ -314,6 +315,7 @@ class Banco():
 
 
     def CargarBDCuentaFF(self):
+        self.__listaCuentaFF = []
         with open('./Modelo/BD/cuentas_ff.txt', 'r', encoding='utf-8') as fichero:
             contador = int(fichero.readline().strip())
             for i in range(contador):
@@ -346,6 +348,7 @@ class Banco():
                 fichero.write(f"{num_cuenta}, {cliente}, {datos_comercial}, {saldo}, {tipo_moneda}, {fecha_apertura}, {fecha_ult_retiro}, {plazo}\n")
 
     def CargarBDCuentaPF(self):
+        self.__listaCuentaPF = []
         with open('./Modelo/BD/cuentas_pf.txt', 'r', encoding='utf-8') as fichero:
             contador = int(fichero.readline().strip())
             for i in range(contador):
@@ -377,6 +380,7 @@ class Banco():
                 fichero.write(f"{nombre}, {sexo}, {ci}, {centro_trabajo}, {ocupacion}, {salario}\n")
     
     def CargarBDCliente(self):
+        self.__listaCliente = []
         with open('./Modelo/BD/clientes.txt', 'r', encoding='utf-8') as fichero:
             contador = int(fichero.readline().strip()) 
             for i in range(contador):
@@ -403,6 +407,7 @@ class Banco():
                 fichero.write(f"{nombre}, {sexo}, {ci}, {anios_ex}\n")
 
     def CargarBDComercial(self):
+        self.__listaComercial = []
         with open('./Modelo/BD/comerciales.txt', 'r', encoding='utf-8') as fichero:
             contador = int(fichero.readline().strip()) 
             for i in range(contador):

@@ -43,4 +43,7 @@ class MainWindow(QMainWindow):
             return True
         else: 
             return False   
+        
+    def mostrar_error(self, error):
+        QMessageBox.critical(self, "Error", error)
 

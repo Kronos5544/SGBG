@@ -31,23 +31,29 @@ class PresentadorPrincipal:
         crud_clientes.iniciar()
 
     def guardar_BD(self):
-        selec = self.__vista.alerta_guardar()
-        if selec:
-            self.__banco.GuardarBDCliente()
-            self.__banco.GuardarBDComercial()
-            self.__banco.GuardarBDCuentaSimp()
-            self.__banco.GuardarBDCuentaFF()
-            self.__banco.GuardarBDCuentaPF()
+        try:
+            selec = self.__vista.alerta_guardar()
+            if selec:
+                self.__banco.GuardarBDCliente()
+                self.__banco.GuardarBDComercial()
+                self.__banco.GuardarBDCuentaSimp()
+                self.__banco.GuardarBDCuentaFF()
+                self.__banco.GuardarBDCuentaPF()
+        except Exception:
+            self.__vista.mostrar_error("La Base de Datos no se guardó correctamente")
 
 
     def cargar_BD(self):
-        selec = self.__vista.alerta_cargar()
-        if selec:
-            self.__banco.CargarBDCliente()
-            self.__banco.CargarBDComercial()
-            self.__banco.CargarBDCuentaSimp()
-            self.__banco.CargarBDCuentaFF()
-            self.__banco.CargarBDCuentaPF()
+        try:
+            selec = self.__vista.alerta_cargar()
+            if selec:
+                self.__banco.CargarBDCliente()
+                self.__banco.CargarBDComercial()
+                self.__banco.CargarBDCuentaSimp()
+                self.__banco.CargarBDCuentaFF()
+                self.__banco.CargarBDCuentaPF()
+        except Exception:
+            self.__vista.mostrar_error("La Base de datos no se cargó correctamente")
 
 #Iniciar Gestionar comerciales
     def crud_comerciales(self):
