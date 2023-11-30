@@ -14,6 +14,7 @@ class MainWindow(QMainWindow):
         self.actionClientes.triggered.connect(self.__presentador.crud_clientes) #Cargar la ventana de gestión de clientes
         self.actionComerciales.triggered.connect(self.__presentador.crud_comerciales) #Cargar la ventana de gestión de clientes
         self.actionCuentas_Simples.triggered.connect(self.__presentador.crud_cuentas_simples) #Cargar la ventana de gestión de cuentas simples
+        self.actionCuentas_de_Formacion_de_Fondos.triggered.connect(self.__presentador.crud_cuentas_ff) #Cargar la ventana de gestión de cuentas de Formación de Fondos
         self.actionCargar.triggered.connect(self.__presentador.cargar_BD)
 
     def resizeEvent(self, a0: QResizeEvent):

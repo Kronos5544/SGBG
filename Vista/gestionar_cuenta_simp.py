@@ -5,7 +5,7 @@ class GestionarCuentaSimple(QWidget):
     def __init__(self, presentador):
         self.__presentador = presentador
         super().__init__()
-        uic.loadUi('./Vista/ui/CRUD_cuentas_simples.ui', self) #Cargar ui de la gestión de comerciales
+        uic.loadUi('./Vista/ui/CRUD_cuentas_simples.ui', self) #Cargar ui de la gestión de cuentas simples
 
         self.btn_cerrar.clicked.connect(self.close)
         self.btn_insertar.clicked.connect(self.__presentador.insertar_cuenta_simple)

@@ -6,20 +6,20 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>341</width>
-    <height>316</height>
+    <width>640</width>
+    <height>480</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
-    <width>341</width>
-    <height>316</height>
+    <width>640</width>
+    <height>480</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
-    <width>341</width>
-    <height>316</height>
+    <width>640</width>
+    <height>480</height>
    </size>
   </property>
   <property name="windowTitle">
@@ -30,37 +30,13 @@
     <rect>
      <x>6</x>
      <y>6</y>
-     <width>331</width>
-     <height>201</height>
+     <width>631</width>
+     <height>231</height>
     </rect>
    </property>
    <layout class="QGridLayout" name="gridLayout" columnstretch="0,0,0,0,0">
-    <item row="1" column="0">
-     <widget class="QLabel" name="label_2">
-      <property name="text">
-       <string>Cliente</string>
-      </property>
-     </widget>
-    </item>
-    <item row="1" column="2">
-     <widget class="QLineEdit" name="txt_cliente"/>
-    </item>
-    <item row="5" column="0">
-     <widget class="QLabel" name="label_6">
-      <property name="text">
-       <string> Fecha de apertura</string>
-      </property>
-     </widget>
-    </item>
     <item row="3" column="2">
      <widget class="QLineEdit" name="txt_saldo"/>
-    </item>
-    <item row="8" column="0">
-     <widget class="QLabel" name="label_7">
-      <property name="text">
-       <string>Cuota Mensual</string>
-      </property>
-     </widget>
     </item>
     <item row="4" column="2" colspan="3">
      <widget class="QWidget" name="widget_3" native="true">
@@ -99,17 +75,23 @@
       </layout>
      </widget>
     </item>
+    <item row="7" column="2">
+     <widget class="QLineEdit" name="txt_cuota_mensual"/>
+    </item>
+    <item row="0" column="0">
+     <widget class="QLabel" name="label">
+      <property name="text">
+       <string>Número de Cuenta</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="2">
+     <widget class="QLineEdit" name="txt_cliente"/>
+    </item>
     <item row="4" column="0">
      <widget class="QLabel" name="label_3">
       <property name="text">
        <string>Tipo de Moneda</string>
-      </property>
-     </widget>
-    </item>
-    <item row="3" column="0">
-     <widget class="QLabel" name="label_10">
-      <property name="text">
-       <string>Saldo</string>
       </property>
      </widget>
     </item>
@@ -120,34 +102,42 @@
       </property>
      </widget>
     </item>
+    <item row="7" column="0">
+     <widget class="QLabel" name="label_7">
+      <property name="text">
+       <string>Cuota Mensual</string>
+      </property>
+     </widget>
+    </item>
     <item row="0" column="2">
      <widget class="QLineEdit" name="txt_num_cuenta"/>
     </item>
     <item row="2" column="2">
      <widget class="QLineEdit" name="txt_comercial"/>
     </item>
-    <item row="0" column="0">
-     <widget class="QLabel" name="label">
+    <item row="3" column="0">
+     <widget class="QLabel" name="label_10">
       <property name="text">
-       <string>Número de Cuenta</string>
+       <string>Saldo</string>
       </property>
      </widget>
     </item>
-    <item row="8" column="2">
-     <widget class="QLineEdit" name="txt_cuota_mensual"/>
-    </item>
-    <item row="5" column="2">
-     <widget class="QDateEdit" name="date_apertura"/>
+    <item row="1" column="0">
+     <widget class="QLabel" name="label_2">
+      <property name="text">
+       <string>Cliente</string>
+      </property>
+     </widget>
     </item>
    </layout>
   </widget>
   <widget class="QTableWidget" name="tabla">
    <property name="geometry">
     <rect>
-     <x>6</x>
-     <y>220</y>
-     <width>331</width>
-     <height>54</height>
+     <x>10</x>
+     <y>243</y>
+     <width>621</width>
+     <height>181</height>
     </rect>
    </property>
    <property name="editTriggers">
@@ -157,13 +147,13 @@
     <bool>true</bool>
    </property>
   </widget>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>290</y>
-     <width>298</width>
-     <height>19</height>
+     <y>440</y>
+     <width>621</width>
+     <height>29</height>
     </rect>
    </property>
    <layout class="QHBoxLayout" name="horizontalLayout_2">

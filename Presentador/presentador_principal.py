@@ -4,6 +4,7 @@ from Modelo.Banco import Banco
 from Presentador.presentador_clientes import PresentadorCliente
 from Presentador.presentador_comerciales import PresentadorComercial
 from Presentador.presentador_cuentas_simples import PresentadorCuentaSimple
+from Presentador.presentador_cuentas_ff import PresentadorCuentaFF
 from Vista.ventana_principal import MainWindow
 from Vista.acerca_de import AcercaDe
 
@@ -30,7 +31,9 @@ class PresentadorPrincipal:
 
     def cargar_BD(self):
         self.__banco.CargarBDCliente()
+        self.__banco.CargarBDComercial()
         self.__banco.CargarBDCuentaSimp()
+        self.__banco.CargarBDCuentaFF()
 
 #Iniciar Gestionar comerciales
     def crud_comerciales(self):
@@ -41,3 +44,8 @@ class PresentadorPrincipal:
     def crud_cuentas_simples(self):
         crud_cuentas_simples = PresentadorCuentaSimple(self.__banco)
         crud_cuentas_simples.iniciar()
+
+#Iniciar Gestionar cuentas de formación de fondos
+    def crud_cuentas_ff(self):
+        crud_cuentas_ff = PresentadorCuentaFF(self.__banco)
+        crud_cuentas_ff.iniciar()

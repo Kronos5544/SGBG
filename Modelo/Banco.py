@@ -233,6 +233,8 @@ class Banco():
         indice = self.buscarCuentaPF(num)
         if indice == None:
             raise Exception("No existe la cuenta que desea modificar")
+        if self.buscarComercial(cuenta_pf.datos_comercial) == None:
+            raise Exception("El comercial no existe, verifique que lo ha ingresado correctamente o cree uno nuevo")
         ind_comp2 = self.buscarCuentaSimple(cuenta_pf.num_cuenta)
         ind_comp = self.buscarCuentaPF(cuenta_pf.num_cuenta)
         ind_comp3 = self.buscarCuentaFF(cuenta_pf.num_cuenta)
@@ -247,6 +249,8 @@ class Banco():
         indice = self.buscarCuentaFF(num)
         if indice == None:
             raise Exception("No existe la cuenta que desea modificar")
+        if self.buscarComercial(cuenta_ff.datos_comercial) == None:
+            raise Exception("El comercial no existe, verifique que lo ha ingresado correctamente o cree uno nuevo")
         ind_comp2 = self.buscarCuentaSimple(cuenta_ff.num_cuenta)
         ind_comp3 = self.buscarCuentaPF(cuenta_ff.num_cuenta)
         ind_comp = self.buscarCuentaFF(cuenta_ff.num_cuenta)
