@@ -1,5 +1,5 @@
 import sys
-from PyQt5.QtWidgets import QApplication
+from PyQt5.QtWidgets import QApplication, QMessageBox
 from Modelo.Banco import Banco
 from Presentador.presentador_clientes import PresentadorCliente
 from Presentador.presentador_comerciales import PresentadorComercial
@@ -30,12 +30,24 @@ class PresentadorPrincipal:
         crud_clientes = PresentadorCliente(self.__banco)
         crud_clientes.iniciar()
 
+    def guardar_BD(self):
+        selec = self.__vista.alerta_guardar()
+        if selec:
+            self.__banco.GuardarBDCliente()
+            self.__banco.GuardarBDComercial()
+            self.__banco.GuardarBDCuentaSimp()
+            self.__banco.GuardarBDCuentaFF()
+            self.__banco.GuardarBDCuentaPF()
+
+
     def cargar_BD(self):
-        self.__banco.CargarBDCliente()
-        self.__banco.CargarBDComercial()
-        self.__banco.CargarBDCuentaSimp()
-        self.__banco.CargarBDCuentaFF()
-        self.__banco.CargarBDCuentaPF()
+        selec = self.__vista.alerta_cargar()
+        if selec:
+            self.__banco.CargarBDCliente()
+            self.__banco.CargarBDComercial()
+            self.__banco.CargarBDCuentaSimp()
+            self.__banco.CargarBDCuentaFF()
+            self.__banco.CargarBDCuentaPF()
 
 #Iniciar Gestionar comerciales
     def crud_comerciales(self):

@@ -128,6 +128,6 @@ class GestionarCliente(QWidget):
   
 
     def mostrar_error(self, error):
-        QMessageBox.critical(self, "Error", error)
+        return QMessageBox.critical(self, "Error", error)
         
 

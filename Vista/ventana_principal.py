@@ -1,4 +1,4 @@
-from PyQt5.QtWidgets import QMainWindow
+from PyQt5.QtWidgets import QMainWindow, QMessageBox
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QPixmap, QPalette, QBrush, QCloseEvent, QResizeEvent
 from PyQt5 import uic
@@ -16,6 +16,7 @@ class MainWindow(QMainWindow):
         self.actionCuentas_Simples.triggered.connect(self.__presentador.crud_cuentas_simples) #Cargar la ventana de gestión de cuentas simples
         self.actionCuentas_de_Plazo_Fijo.triggered.connect(self.__presentador.crud_cuentas_pf) #Cargar la ventana de gestión de cuentas de plazo fijo
         self.actionCuentas_de_Formacion_de_Fondos.triggered.connect(self.__presentador.crud_cuentas_ff) #Cargar la ventana de gestión de cuentas de Formación de Fondos
+        self.actionGuardar.triggered.connect(self.__presentador.guardar_BD)
         self.actionCargar.triggered.connect(self.__presentador.cargar_BD)
 
     def resizeEvent(self, a0: QResizeEvent):
@@ -28,3 +29,18 @@ class MainWindow(QMainWindow):
 
     def closeEvent(self, a0: QCloseEvent):
         QMainWindow.closeEvent(self, a0)
+
+    def alerta_guardar(self):
+        msg = QMessageBox.question(self,"Guardar",  "¿Está seguro de que desea guardar los cambios? Se sobreescribirán los datos anteriores", QMessageBox.Yes | QMessageBox.No)
+        if msg == QMessageBox.Yes:
+            return True
+        else: 
+            return False
+        
+    def alerta_cargar(self):
+        msg = QMessageBox.question(self,"Cargar",  "¿Está seguro de que desea cargar la Base de Datos? Perderá los cambios que no haya guardado", QMessageBox.Yes | QMessageBox.No)
+        if msg == QMessageBox.Yes:
+            return True
+        else: 
+            return False   
+

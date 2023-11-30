@@ -8,6 +8,7 @@ class PresentadorComercial:
 
     def iniciar(self):
         self.__vista = GestionarComercial(self)
+        self.cargar_datos()
         self.__vista.show()
 
     def cargar_datos(self):
