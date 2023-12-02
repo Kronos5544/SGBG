@@ -87,6 +87,8 @@ class GestionarCuentaSimple(QWidget):
         
         if len(self.valor_saldo) == 0:
             raise Exception(msg.format('"Saldo"'))
+        if self.valor_saldo[0] == "-" :
+            raise Exception("El saldo no puede ser negativo")
         if self.valor_saldo.count(".") > 1:
             raise Exception("El saldo es inválido")
         if not self.valor_saldo.replace(".", "").isdigit():

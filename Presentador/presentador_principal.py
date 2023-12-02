@@ -32,7 +32,7 @@ class PresentadorPrincipal:
 
     def guardar_BD(self):
         try:
-            selec = self.__vista.alerta_guardar()
+            selec = self.__vista.alerta("Guardar", "¿Está seguro de que desea guardar los cambios? Se sobreescribirán los datos anteriores")
             if selec:
                 self.__banco.GuardarBDCliente()
                 self.__banco.GuardarBDComercial()
@@ -45,15 +45,15 @@ class PresentadorPrincipal:
 
     def cargar_BD(self):
         try:
-            selec = self.__vista.alerta_cargar()
+            selec = self.__vista.alerta("Cargar", "¿Está seguro de que desea cargar la Base de Datos? Perderá los cambios que no haya guardado")
             if selec:
                 self.__banco.CargarBDCliente()
                 self.__banco.CargarBDComercial()
                 self.__banco.CargarBDCuentaSimp()
                 self.__banco.CargarBDCuentaFF()
                 self.__banco.CargarBDCuentaPF()
-        except Exception:
-            self.__vista.mostrar_error("La Base de datos no se cargó correctamente")
+        except Exception as error:
+            self.__vista.mostrar_error(str(error))
 
 #Iniciar Gestionar comerciales
     def crud_comerciales(self):
@@ -70,7 +70,7 @@ class PresentadorPrincipal:
         crud_cuentas_ff = PresentadorCuentaFF(self.__banco)
         crud_cuentas_ff.iniciar()
     
-    #Iniciar Gestionar cuentas de Plazo Fijo
+#Iniciar Gestionar cuentas de Plazo Fijo
     def crud_cuentas_pf(self):
         crud_cuentas_pf = PresentadorCuentaPF(self.__banco)
         crud_cuentas_pf.iniciar()
