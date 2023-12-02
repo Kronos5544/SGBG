@@ -17,7 +17,7 @@
    </size>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>SGBG</string>
   </property>
   <property name="autoFillBackground">
    <bool>true</bool>
@@ -39,7 +39,7 @@
      <x>0</x>
      <y>0</y>
      <width>359</width>
-     <height>18</height>
+     <height>24</height>
     </rect>
    </property>
    <property name="mouseTracking">
@@ -60,11 +60,17 @@
     <property name="title">
      <string>CRUD</string>
     </property>
+    <widget class="QMenu" name="menuCuentas">
+     <property name="title">
+      <string>Cuentas</string>
+     </property>
+     <addaction name="actionCuentas_Simples"/>
+     <addaction name="actionCuentas_de_Plazo_Fijo"/>
+     <addaction name="actionCuentas_de_Formacion_de_Fondos"/>
+    </widget>
     <addaction name="actionClientes"/>
     <addaction name="actionComerciales"/>
-    <addaction name="actionCuentas_Simples"/>
-    <addaction name="actionCuentas_de_Plazo_Fijo"/>
-    <addaction name="actionCuentas_de_Formacion_de_Fondos"/>
+    <addaction name="menuCuentas"/>
    </widget>
    <widget class="QMenu" name="menuHerramientas">
     <property name="title">
