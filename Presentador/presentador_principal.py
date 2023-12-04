@@ -1,5 +1,5 @@
 import sys
-from PyQt5.QtWidgets import QApplication, QMessageBox
+from PyQt5.QtWidgets import QApplication
 from Modelo.Banco import Banco
 from Presentador.presentador_clientes import PresentadorCliente
 from Presentador.presentador_comerciales import PresentadorComercial

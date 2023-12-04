@@ -56,7 +56,7 @@ class CuentaSimple:
         self.__tipo_moneda = value
     @fecha_apertura.setter
     def fecha_apertura(self,value):
-        self.__fecha_apertura = value
+        self.__fecha_apertura = date.fromisoformat(value)
     @fecha_ult_retiro.setter
     def fecha_ult_retiro(self,value):
-        self.__fecha_ult_retiro = value
+        self.__fecha_ult_retiro = date.fromisoformat(value)
