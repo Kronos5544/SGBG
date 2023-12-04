@@ -74,4 +74,14 @@ class CuentaSimple:
             anios = 0
 
         interes = (self.saldo * 0.04) * anios
-        return interes
+        return round(interes, 2)
+    
+    def __add__(self, value):
+        self.saldo += self.calcularInteres()
+        self.saldo += value
+
+    def __sub__(self, value):
+        self.saldo += self.calcularInteres()
+        self.fecha_ult_retiro = date.today().isoformat()
+        self.saldo -= value
+

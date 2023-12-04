@@ -38,4 +38,14 @@ class TestCuentaSimple(unittest.TestCase):
     def test_calcular_interes(self):
         self.assertEqual(self.cuenta.calcularInteres(), 320)
 
+    def test_depositar_retirar(self):
+        self.cuenta + 500.00
+        calc_manual = 8000 + round(8000.00 * 0.04, 2) + 500 #Calculando interes y suma manualmente
+        self.assertEqual(self.cuenta.saldo, calc_manual)
+
+        self.cuenta - 1140.00 
+        calc_manual2 = calc_manual + round(calc_manual * 0.04, 2) - 1140.00 #Calculando interes y resta manualmente
+        self.assertEqual(self.cuenta.saldo, calc_manual2)
+        self.assertEqual(self.cuenta.fecha_ult_retiro, date.today())
+
         

@@ -17,12 +17,12 @@ class CuentaPF(CuentaSimple):
         interes = 0
         hoy = date.today()
         anios = hoy.year - self.fecha_ult_retiro.year
-          
+        
         if self.fecha_ult_retiro.month > hoy.month:
             anios -= 1
         elif self.fecha_ult_retiro.month == hoy.month and self.fecha_ult_retiro.day > hoy.day:
             anios -= 1
-        if anios < 0:
+        if anios < self.plazo:
             anios = 0
 
         if anios >= 5:
@@ -36,3 +36,5 @@ class CuentaPF(CuentaSimple):
 
         return interes
         
+    def __add__(self, value):
+        self.saldo += value

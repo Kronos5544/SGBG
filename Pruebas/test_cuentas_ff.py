@@ -13,3 +13,7 @@ class TestCuentaFF(TestCuentaSimple):
 
     def test_calcular_interes(self):
         self.assertEqual(self.cuenta.calcularInteres(), 480)
+
+    def test_depositar_retirar(self):
+        self.cuenta + 800.00
+        self.assertEqual(self.cuenta.saldo, 9280.00)

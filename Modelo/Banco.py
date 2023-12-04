@@ -467,3 +467,31 @@ class Banco():
             raise Exception("La cuenta no existe en el repositorio")
         
         return interes
+
+    def depositar(self, num, saldo):
+        indice = self.buscarCuentaSimple(num)
+        indice2 = self.buscarCuentaPF(num)
+        indice3 = self.buscarCuentaFF(num)
+
+        if indice != None:
+            self.listaCuentaSimple[indice] + saldo
+        elif indice2 != None:
+            self.listaCuentaPF[indice2] + saldo
+        elif indice3 != None:
+            self.listaCuentaFF[indice3] + saldo
+        else:
+            raise Exception("La cuenta no existe en el repositorio")
+        
+    def retirar(self, num, saldo):
+        indice = self.buscarCuentaSimple(num)
+        indice2 = self.buscarCuentaPF(num)
+        indice3 = self.buscarCuentaFF(num)
+
+        if indice != None:
+            self.listaCuentaSimple[indice] - saldo
+        elif indice2 != None:
+            self.listaCuentaPF[indice2] - saldo
+        elif indice3 != None:
+            self.listaCuentaFF[indice3] - saldo
+        else:
+            raise Exception("La cuenta no existe en el repositorio")

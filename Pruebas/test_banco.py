@@ -22,7 +22,7 @@ class TestBanco(unittest.TestCase):
         self.cuenta_simp = CuentaSimple("0325469887421246", "03031976450", "03031976400", 8000.00, "CUP", "2021-05-28", "2022-03-25")
         self.cuenta_simp2 = CuentaSimple("0325469887421246", "03031976450", "03031976400", 6000.00, "EUR", "2021-05-28", "2022-03-25")
         
-        self.cuenta_pf = CuentaPF("0325469887421247", "03031976450", "03031976400", 8000.00, "CUP", "2021-05-28", "2022-03-25", 5)
+        self.cuenta_pf = CuentaPF("0325469887421247", "03031976450", "03031976400", 8000.00, "CUP", "2021-05-28", "2022-03-25", 1)
         self.cuenta_pf2 = CuentaPF("0325469887421247", "03031976450", "03031976400", 2800.00, "CUP", "2021-05-28", "2022-03-25", 5)
 
 
@@ -361,6 +361,64 @@ class TestBanco(unittest.TestCase):
         self.assertEqual(self.banco.calcularInteresxNum(self.cuenta_simp.num_cuenta), 320)
         self.assertEqual(self.banco.calcularInteresxNum(self.cuenta_pf.num_cuenta), 640)
         self.assertEqual(self.banco.calcularInteresxNum(self.cuenta_ff.num_cuenta), 480)
+        
+    def test_depositar(self):
+        self.banco.ingresarCliente(self.cliente)
+        self.banco.ingresarComercial(self.comercial)
+        self.banco.ingresarCuentaSimple(self.cuenta_simp)
+        self.banco.ingresarCuentaFF(self.cuenta_ff)
+        self.banco.ingresarCuentaPF(self.cuenta_pf)
+
+        #Probando depositar en cuenta simple
+        self.assertEqual(self.banco.listaCuentaSimple[0].saldo, 8000.00)
+        self.banco.depositar(self.cuenta_simp.num_cuenta, 500.00)
+        calc_manual = 8000 + round(8000.00 * 0.04, 2) + 500 #Calculando interes y suma manualmente
+        self.assertEqual(self.banco.listaCuentaSimple[0].saldo, calc_manual)
+
+        #Probando depositar en cuenta plazo fijo
+        self.assertEqual(self.banco.listaCuentaPF[0].saldo, 8000.00)
+        self.banco.depositar(self.cuenta_pf.num_cuenta, 800.00)
+        self.assertEqual(self.banco.listaCuentaPF[0].saldo, 8800.00)
+
+        #Probando depositar en cuenta formación de fondos
+        self.assertEqual(self.banco.listaCuentaFF[0].saldo, 8000.00)
+        self.banco.depositar(self.cuenta_ff.num_cuenta, 750.00)
+        calc_manual = 8000 + round(8000.00 * 0.06, 2) + 750 #Calculando interes y suma manualmente
+        self.assertEqual(self.banco.listaCuentaFF[0].saldo, calc_manual)
+
+        #Probando que lanza error al no encontrar la cuenta
+        with self.assertRaises(Exception):
+            self.banco.depositar("254569885454215", 800)
+
+    def test_retirar(self):
+        self.banco.ingresarCliente(self.cliente)
+        self.banco.ingresarComercial(self.comercial)
+        self.banco.ingresarCuentaSimple(self.cuenta_simp)
+        self.banco.ingresarCuentaFF(self.cuenta_ff)
+        self.banco.ingresarCuentaPF(self.cuenta_pf)
+
+        #Probando retirar en cuenta simple
+        self.assertEqual(self.banco.listaCuentaSimple[0].saldo, 8000.00)
+        self.banco.retirar(self.cuenta_simp.num_cuenta, 500.00)
+        calc_manual = 8000 + round(8000.00 * 0.04, 2) - 500 #Calculando interes y resta manualmente
+        self.assertEqual(self.banco.listaCuentaSimple[0].saldo, calc_manual)
+
+        #Probando retirar en cuenta formacion de fondos
+        self.assertEqual(self.banco.listaCuentaFF[0].saldo, 8000.00)
+        self.banco.retirar(self.cuenta_ff.num_cuenta, 700.00)
+        calc_manual = 8000 + round(8000.00 * 0.06, 2) - 700 #Calculando interes y resta manualmente
+        self.assertEqual(self.banco.listaCuentaFF[0].saldo, calc_manual)
+
+        #Probando retirar en cuenta de Plazo Fijo
+        self.assertEqual(self.banco.listaCuentaPF[0].saldo, 8000.00)
+        self.banco.retirar(self.cuenta_pf.num_cuenta, 900.00)
+        calc_manual = 8000 + round(8000.00 * 0.08, 2) - 900 #Calculando interes y resta manualmente
+        self.assertEqual(self.banco.listaCuentaPF[0].saldo, calc_manual)
+
+        #Probando que lanza error al no encontrar la cuenta
+        with self.assertRaises(Exception):
+            self.banco.retirar("254569885454215", 800)
+
         
 
         
