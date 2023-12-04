@@ -10,3 +10,6 @@ class TestCuentaPF(TestCuentaSimple):
         self.assertEqual(self.cuenta.plazo, 5)
         self.cuenta.plazo = 2
         self.assertEqual(self.cuenta.plazo, 2)
+    
+    def test_calcular_interes(self):
+        self.assertEqual(self.cuenta.calcularInteres(), 640)

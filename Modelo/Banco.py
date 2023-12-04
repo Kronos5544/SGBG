@@ -450,3 +450,20 @@ class Banco():
                 anios_ex = int(lista[3].strip())
                 comercial = Comercial(nombre, sexo, ci, anios_ex)
                 self.ingresarComercial(comercial)
+
+    #Funcionalidades
+    def calcularInteresxNum(self, num):
+        indice = self.buscarCuentaSimple(num)
+        indice2 = self.buscarCuentaPF(num)
+        indice3 = self.buscarCuentaFF(num)
+
+        if indice != None:
+            interes = self.listaCuentaSimple[indice].calcularInteres() 
+        elif indice2 != None:
+            interes = self.listaCuentaPF[indice2].calcularInteres()
+        elif indice3 != None:
+            interes = self.listaCuentaFF[indice3].calcularInteres()
+        else:
+            raise Exception("La cuenta no existe en el repositorio")
+        
+        return interes

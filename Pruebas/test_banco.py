@@ -350,6 +350,17 @@ class TestBanco(unittest.TestCase):
         self.assertEqual(self.banco.listaCuentaSimple[0].datos_comercial, '03031976402')
         self.assertEqual(self.banco.listaCuentaPF[0].datos_comercial, '03031976402')
         self.assertEqual(self.banco.listaCuentaFF[0].datos_comercial, '03031976402')
+    
+    def test_calcular_interes_x_num(self):
+        self.banco.ingresarCliente(self.cliente)
+        self.banco.ingresarComercial(self.comercial)
+        self.banco.ingresarCuentaSimple(self.cuenta_simp)
+        self.banco.ingresarCuentaFF(self.cuenta_ff)
+        self.banco.ingresarCuentaPF(self.cuenta_pf)
+
+        self.assertEqual(self.banco.calcularInteresxNum(self.cuenta_simp.num_cuenta), 320)
+        self.assertEqual(self.banco.calcularInteresxNum(self.cuenta_pf.num_cuenta), 640)
+        self.assertEqual(self.banco.calcularInteresxNum(self.cuenta_ff.num_cuenta), 480)
         
 
         

@@ -10,3 +10,6 @@ class TestCuentaFF(TestCuentaSimple):
         self.assertEqual(self.cuenta.cuota_mensual, 200.00)
         self.cuenta.cuota_mensual = 700.00
         self.assertEqual(self.cuenta.cuota_mensual, 700.00)
+
+    def test_calcular_interes(self):
+        self.assertEqual(self.cuenta.calcularInteres(), 480)

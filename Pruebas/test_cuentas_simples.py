@@ -34,4 +34,8 @@ class TestCuentaSimple(unittest.TestCase):
         self.assertEqual(self.cuenta.fecha_ult_retiro, date(2022,3,25))
         self.cuenta.fecha_ult_retiro = '2022-07-18'
         self.assertEqual(self.cuenta.fecha_ult_retiro, date(2022,7,18))
+
+    def test_calcular_interes(self):
+        self.assertEqual(self.cuenta.calcularInteres(), 320)
+
         

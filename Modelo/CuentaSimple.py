@@ -60,3 +60,18 @@ class CuentaSimple:
     @fecha_ult_retiro.setter
     def fecha_ult_retiro(self,value):
         self.__fecha_ult_retiro = date.fromisoformat(value)
+
+    def calcularInteres(self):
+        interes = 0
+        hoy = date.today()
+        anios = hoy.year - self.fecha_ult_retiro.year
+          
+        if self.fecha_ult_retiro.month > hoy.month:
+            anios -= 1
+        elif self.fecha_ult_retiro.month == hoy.month and self.fecha_ult_retiro.day > hoy.day:
+            anios -= 1
+        if anios < 0:
+            anios = 0
+
+        interes = (self.saldo * 0.04) * anios
+        return interes
