@@ -419,6 +419,10 @@ class TestBanco(unittest.TestCase):
 
 
     def test_interes_cuenta_pf_en_5_anios(self):
+        #Manda un error si no hay cuentas pf en el banco
+        with self.assertRaises(Exception):
+            self.banco.interesPF5Anios()
+
         self.banco.ingresarCliente(self.cliente)
         self.banco.ingresarComercial(self.comercial)
         self.banco.ingresarCuentaSimple(self.cuenta_simp)
@@ -458,6 +462,10 @@ class TestBanco(unittest.TestCase):
         self.banco.ingresarCuentaSimple(self.cuenta_simp)
         self.banco.ingresarCuentaFF(self.cuenta_ff)
         self.banco.ingresarCuentaPF(self.cuenta_pf)
+
+        #Comprobando si manda error al no existir cuentas pf con más de 10 mil pesos
+        with self.assertRaises(Exception):
+            self.banco.cuentasPFmas10MilCUP()
 
         #Modificando cuenta_pf2 para que tenga más de 10 mil pesos y se pueda ingresar
         self.cuenta_pf2.num_cuenta = "0325469887421243"
