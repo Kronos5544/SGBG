@@ -417,6 +417,7 @@ class TestBanco(unittest.TestCase):
         with self.assertRaises(Exception):
             self.banco.retirar("254569885454215", 800)
 
+
     def test_interes_cuenta_pf_en_5_anios(self):
         self.banco.ingresarCliente(self.cliente)
         self.banco.ingresarComercial(self.comercial)
@@ -427,7 +428,8 @@ class TestBanco(unittest.TestCase):
         self.cuenta_pf2.num_cuenta = "032564785412365478"
         self.banco.ingresarCuentaPF(self.cuenta_pf2)
         
-        self.assertEqual(self.banco.interes_cuenta_pf_en_5_anios(), [8000 * 0.08 * 1, 2800 * 0.16 * 5])
+        self.assertEqual(self.banco.interesPF5Anios(), [8000 * 0.08 * 1, 2800 * 0.16 * 5])
+
 
     def test_cuenta_mayor_saldo(self):
 
@@ -450,6 +452,34 @@ class TestBanco(unittest.TestCase):
         self.assertEqual(self.banco.cuentaMayorSaldo().num_cuenta, self.cuenta_pf.num_cuenta) #Comparo si la cuenta retornada es la misma que la cuenta esperada a través del número de cuenta
         
 
+    def test_cuentas_pf_mas_10_mil_cup(self):
+        self.banco.ingresarCliente(self.cliente)
+        self.banco.ingresarComercial(self.comercial)
+        self.banco.ingresarCuentaSimple(self.cuenta_simp)
+        self.banco.ingresarCuentaFF(self.cuenta_ff)
+        self.banco.ingresarCuentaPF(self.cuenta_pf)
+
+        #Modificando cuenta_pf2 para que tenga más de 10 mil pesos y se pueda ingresar
+        self.cuenta_pf2.num_cuenta = "0325469887421243"
+        self.cuenta_pf2.saldo = 11000
+        self.banco.ingresarCuentaPF(self.cuenta_pf2)
         
+        #Cambiando el tipo de moneda de cuenta_pf a EUR para que cumpla la condición de que tenga más de 10000 pesos
+        self.cuenta_pf.tipo_moneda = "EUR"
+
+        #Ingresando una nueva cuenta para tener más datos de prueba y cuyo número de cuenta es menor que el anterior para asegurarme de que las cuentas están desordenadas
+        cuenta_pf3 = CuentaPF("0325469887421234", "03031976450", "03031976400", 2800.00, "USD", "2021-05-28", "2017-03-25", 5)
+        self.banco.ingresarCuentaPF(cuenta_pf3)
+
+
+        lista_cuentas = self.banco.cuentasPFmas10MilCUP()
+
+        comp_menor = int(lista_cuentas[0].num_cuenta) < int(lista_cuentas[1].num_cuenta) and int(lista_cuentas[0].num_cuenta) < int(lista_cuentas[2].num_cuenta) #Comprobando que el primer número de cuenta de la lista es el menor
+        comp_menor2 = int(lista_cuentas[1].num_cuenta) < int(lista_cuentas[2].num_cuenta) #Comprobando que el segundo número de cuenta es menor que el tercero
+
+        #AssertTrue comprueba que el parámetro que se le pasa es verdadero, de cumplirse la condición, entonces están ordenados ascendentemente por el número de cuenta
+        self.assertTrue(comp_menor)
+        self.assertTrue(comp_menor2)
+
 
         

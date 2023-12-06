@@ -12,4 +12,3 @@ if __name__ == '__main__':
     if selec.strip().upper() == 'S':
         print("\nRealizando pruebas unitarias: \n")
         unittest.main(verbosity = 2)
-
