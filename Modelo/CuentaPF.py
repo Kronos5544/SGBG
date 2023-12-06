@@ -15,6 +15,7 @@ class CuentaPF(CuentaSimple):
 
     def calcularInteres(self):
         interes = 0
+        contador = 0
         hoy = date.today()
         anios = hoy.year - self.fecha_ult_retiro.year
         
@@ -25,12 +26,9 @@ class CuentaPF(CuentaSimple):
         if anios < self.plazo:
             anios = 0
 
-        if anios >= 5:
-            interes = self.saldo * 0.16
-
-        elif anios >= 1:
-            interes = self.saldo * (0.08 + (0.02 * (anios - 1)))
-
+        if anios > 0:
+            interes = self.saldo * (0.08 + (0.02 * (self.plazo - 1))) * self.plazo
+                
         else:
             interes = 0
 

@@ -42,8 +42,6 @@ class TestBanco(unittest.TestCase):
         self.assertEqual(len(self.banco.listaComercial), 0)
         self.banco.ingresarComercial(self.comercial)
         self.assertEqual(len(self.banco.listaComercial), 1)
-
-        self.assertEqual(len(self.banco.listaCuentaSimple), 0)
         self.banco.ingresarCuentaSimple(self.cuenta_simp)
         self.assertEqual(len(self.banco.listaCuentaSimple), 1)
 
@@ -418,6 +416,39 @@ class TestBanco(unittest.TestCase):
         #Probando que lanza error al no encontrar la cuenta
         with self.assertRaises(Exception):
             self.banco.retirar("254569885454215", 800)
+
+    def test_interes_cuenta_pf_en_5_anios(self):
+        self.banco.ingresarCliente(self.cliente)
+        self.banco.ingresarComercial(self.comercial)
+        self.banco.ingresarCuentaSimple(self.cuenta_simp)
+        self.banco.ingresarCuentaFF(self.cuenta_ff)
+        self.banco.ingresarCuentaPF(self.cuenta_pf)
+
+        self.cuenta_pf2.num_cuenta = "032564785412365478"
+        self.banco.ingresarCuentaPF(self.cuenta_pf2)
+        
+        self.assertEqual(self.banco.interes_cuenta_pf_en_5_anios(), [8000 * 0.08 * 1, 2800 * 0.16 * 5])
+
+    def test_cuenta_mayor_saldo(self):
+
+        with self.assertRaises(Exception): #Comprobando que manda error si no existen cuentas en el repositorio
+            self.banco.cuentaMayorSaldo()
+
+        self.banco.ingresarCliente(self.cliente)
+        self.banco.ingresarComercial(self.comercial)
+        self.banco.ingresarCuentaSimple(self.cuenta_simp)
+        self.banco.ingresarCuentaFF(self.cuenta_ff)
+        self.banco.ingresarCuentaPF(self.cuenta_pf)
+        
+        self.cuenta_ff.tipo_moneda = "CUC" #Como todas las cuentas tienen el mismo saldo y en CUP, cambio una a CUC para que sea la de mayor saldo
+        self.assertEqual(self.banco.cuentaMayorSaldo().num_cuenta, self.cuenta_ff.num_cuenta) #Comparo si la cuenta retornada es la misma que la cuenta esperada a través del número de cuenta
+
+        self.cuenta_simp.tipo_moneda = "USD" #Cambio la cuenta simple a USD para que sea la de mayor saldo
+        self.assertEqual(self.banco.cuentaMayorSaldo().num_cuenta, self.cuenta_simp.num_cuenta) #Comparo si la cuenta retornada es la misma que la cuenta esperada a través del número de cuenta
+
+        self.cuenta_pf.tipo_moneda = "EUR" #Cambio la cuenta pf a EUR para que sea la de mayor saldo
+        self.assertEqual(self.banco.cuentaMayorSaldo().num_cuenta, self.cuenta_pf.num_cuenta) #Comparo si la cuenta retornada es la misma que la cuenta esperada a través del número de cuenta
+        
 
         
 

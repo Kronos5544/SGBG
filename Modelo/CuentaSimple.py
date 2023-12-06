@@ -76,6 +76,16 @@ class CuentaSimple:
         interes = (self.saldo * 0.04) * anios
         return round(interes, 2)
     
+    def calcularSaldoCup(self):
+        valores = {
+            "CUP" : 1,
+            "CUC" : 24,
+            "USD" : 110.4,
+            "EUR" : 127.27
+        }
+        return round(self.saldo * valores[self.tipo_moneda], 2)
+
+
     def __add__(self, value):
         self.saldo += self.calcularInteres()
         self.saldo += value

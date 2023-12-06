@@ -48,4 +48,26 @@ class TestCuentaSimple(unittest.TestCase):
         self.assertEqual(self.cuenta.saldo, calc_manual2)
         self.assertEqual(self.cuenta.fecha_ult_retiro, date.today())
 
+    def test_calcular_saldo_CUP(self):
+        #Probando conversión de CUP a CUP
+        calc_manual = (self.cuenta.saldo)
+        self.assertEqual(self.cuenta.calcularSaldoCup(), calc_manual)
+
+        #Probando conversión de CUC a CUP
+        self.cuenta.tipo_moneda = "CUC"
+        calc_manual2 = (self.cuenta.saldo) * 24
+        self.assertEqual(self.cuenta.calcularSaldoCup(), calc_manual2)
+
+        #Probando conversión de EUR a CUP
+        self.cuenta.tipo_moneda = "EUR"
+        calc_manual2 = round(self.cuenta.saldo* 127.27, 2)
+        self.assertEqual(self.cuenta.calcularSaldoCup(), calc_manual2)
+
+        #Probando conversión de USD a CUP
+        self.cuenta.tipo_moneda = "USD"
+        calc_manual2 = round(self.cuenta.saldo * 110.4, 2)
+        self.assertEqual(self.cuenta.calcularSaldoCup(), calc_manual2)
+
+        
+
         

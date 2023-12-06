@@ -4,6 +4,7 @@ from Modelo.CuentaSimple import CuentaSimple
 from Modelo.CuentaPF import CuentaPF
 from Modelo.CuentaFF import CuentaFF
 from datetime import date
+from copy import deepcopy
 
 class Banco():
     def __init__(self):
@@ -495,3 +496,30 @@ class Banco():
             self.listaCuentaFF[indice3] - saldo
         else:
             raise Exception("La cuenta no existe en el repositorio")
+        
+    def interes_cuenta_pf_en_5_anios(self):
+        lista_cuentas = deepcopy(self.listaCuentaPF) #Para crear una nueva lista idéntica a la lista de cuentas pf y trabajar con ella sin afectar a la original
+        for cuenta in lista_cuentas:
+            anio = cuenta.fecha_ult_retiro.year - 5
+            cuenta.fecha_ult_retiro = cuenta.fecha_ult_retiro.replace(year = anio).isoformat()
+        lista = list(map(lambda x : x.calcularInteres(), lista_cuentas))
+        return lista
+    
+    def cuentaMayorSaldo(self):
+        lista_cuentas = deepcopy(self.listaCuentaPF) + deepcopy(self.listaCuentaFF) + deepcopy(self.listaCuentaSimple) #Para crear una nueva lista idéntica a la lista de cuentas pf y trabajar con ella sin afectar a la original
+        
+        if len(lista_cuentas) == 0:
+            raise Exception("No existen cuentas en el repositorio")
+        
+        for cuenta in lista_cuentas:
+            cuenta.saldo = cuenta.saldo + cuenta.calcularInteres()
+            cuenta.saldo_cup = cuenta.calcularSaldoCup()
+        
+        lista_cuentas = sorted(lista_cuentas, key = lambda x : x.saldo_cup) #Ordena las cuentas en orden ascendente teniendo en cuenta el saldo_cup
+        return lista_cuentas[-1] #Devuelve la cuenta en la última posición
+    
+    
+        
+
+
+
