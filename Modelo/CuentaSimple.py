@@ -56,7 +56,42 @@ class CuentaSimple:
         self.__tipo_moneda = value
     @fecha_apertura.setter
     def fecha_apertura(self,value):
-        self.__fecha_apertura = value
+        self.__fecha_apertura = date.fromisoformat(value)
     @fecha_ult_retiro.setter
     def fecha_ult_retiro(self,value):
-        self.__fecha_ult_retiro = value
+        self.__fecha_ult_retiro = date.fromisoformat(value)
+
+    def calcularInteres(self):
+        interes = 0
+        hoy = date.today()
+        anios = hoy.year - self.fecha_ult_retiro.year
+          
+        if self.fecha_ult_retiro.month > hoy.month:
+            anios -= 1
+        elif self.fecha_ult_retiro.month == hoy.month and self.fecha_ult_retiro.day > hoy.day:
+            anios -= 1
+        if anios < 0:
+            anios = 0
+
+        interes = (self.saldo * 0.04) * anios
+        return round(interes, 2)
+    
+    def calcularSaldoCup(self):
+        valores = {
+            "CUP" : 1,
+            "CUC" : 24,
+            "USD" : 110.4,
+            "EUR" : 127.27
+        }
+        return round(self.saldo * valores[self.tipo_moneda], 2)
+
+
+    def __add__(self, value):
+        self.saldo += self.calcularInteres()
+        self.saldo += value
+
+    def __sub__(self, value):
+        self.saldo += self.calcularInteres()
+        self.fecha_ult_retiro = date.today().isoformat()
+        self.saldo -= value
+

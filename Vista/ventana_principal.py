@@ -27,23 +27,17 @@ class MainWindow(QMainWindow):
         self.setPalette(pal)
 
 
-    def closeEvent(self, a0: QCloseEvent):
-        QMainWindow.closeEvent(self, a0)
-
-    def alerta_guardar(self):
-        msg = QMessageBox.question(self,"Guardar",  "¿Está seguro de que desea guardar los cambios? Se sobreescribirán los datos anteriores", QMessageBox.Yes | QMessageBox.No)
-        if msg == QMessageBox.Yes:
+    def alerta(self,nombre_ventana, msg):
+        ventana = QMessageBox.question(self, nombre_ventana,  msg, QMessageBox.Yes | QMessageBox.No)
+        if ventana == QMessageBox.Yes:
             return True
         else: 
             return False
         
-    def alerta_cargar(self):
-        msg = QMessageBox.question(self,"Cargar",  "¿Está seguro de que desea cargar la Base de Datos? Perderá los cambios que no haya guardado", QMessageBox.Yes | QMessageBox.No)
-        if msg == QMessageBox.Yes:
-            return True
-        else: 
-            return False   
-        
     def mostrar_error(self, error):
         QMessageBox.critical(self, "Error", error)
+
+
+    def closeEvent(self, a0: QCloseEvent):
+        QMainWindow.closeEvent(self, a0)
 

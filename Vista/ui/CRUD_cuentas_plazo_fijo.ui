@@ -23,7 +23,7 @@
    </size>
   </property>
   <property name="windowTitle">
-   <string>Form</string>
+   <string>Cuentas de Plazo Fijo</string>
   </property>
   <widget class="QWidget" name="widget" native="true">
    <property name="geometry">

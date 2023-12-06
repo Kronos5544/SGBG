@@ -23,7 +23,7 @@
    </size>
   </property>
   <property name="windowTitle">
-   <string>Form</string>
+   <string>Clientes</string>
   </property>
   <widget class="QWidget" name="widget" native="true">
    <property name="geometry">
@@ -31,7 +31,7 @@
      <x>6</x>
      <y>6</y>
      <width>621</width>
-     <height>211</height>
+     <height>191</height>
     </rect>
    </property>
    <layout class="QGridLayout" name="gridLayout" columnstretch="0,0,0,0">
@@ -120,10 +120,10 @@
   <widget class="QTableWidget" name="tabla">
    <property name="geometry">
     <rect>
-     <x>0</x>
-     <y>240</y>
-     <width>641</width>
-     <height>181</height>
+     <x>10</x>
+     <y>210</y>
+     <width>621</width>
+     <height>211</height>
     </rect>
    </property>
    <property name="editTriggers">
@@ -133,7 +133,7 @@
     <bool>true</bool>
    </property>
   </widget>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>10</x>

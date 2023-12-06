@@ -1,5 +1,5 @@
 import sys
-from PyQt5.QtWidgets import QApplication, QMessageBox
+from PyQt5.QtWidgets import QApplication
 from Modelo.Banco import Banco
 from Presentador.presentador_clientes import PresentadorCliente
 from Presentador.presentador_comerciales import PresentadorComercial
@@ -30,9 +30,10 @@ class PresentadorPrincipal:
         crud_clientes = PresentadorCliente(self.__banco)
         crud_clientes.iniciar()
 
+#Guarda los clientes, comerciales y las cuentas creadas en ese momento, llamando a dichas funciones del modelo. Además de que muestra una ventana al usuario, preguntándole si está seguro de que desea realizar la operación
     def guardar_BD(self):
         try:
-            selec = self.__vista.alerta_guardar()
+            selec = self.__vista.alerta("Guardar", "¿Está seguro de que desea guardar los cambios? Se sobreescribirán los datos anteriores") #Carga una ventana que le pregunta al usuario si está seguro de que desea efectuar la operación, dependiendo de la desición del usuario la funcion devolverá True o False
             if selec:
                 self.__banco.GuardarBDCliente()
                 self.__banco.GuardarBDComercial()
@@ -40,12 +41,12 @@ class PresentadorPrincipal:
                 self.__banco.GuardarBDCuentaFF()
                 self.__banco.GuardarBDCuentaPF()
         except Exception:
-            self.__vista.mostrar_error("La Base de Datos no se guardó correctamente")
+            self.__vista.mostrar_error("Ha ocurrido un error al guardar la Base de Datos")
 
-
+#Carga los clientes, comerciales y cuentas que hay guardadas en la base de datos. Además de que muestra una ventana al usuario preguntándole si está seguro de que deasea efecectuar dicha operación
     def cargar_BD(self):
         try:
-            selec = self.__vista.alerta_cargar()
+            selec = self.__vista.alerta("Cargar", "¿Está seguro de que desea cargar la Base de Datos? Perderá los cambios que no haya guardado") #Carga una ventana que le pregunta al usuario si está seguro de que desea efectuar la operación, dependiendo de la desición del usuario la funcion devolverá True o False
             if selec:
                 self.__banco.CargarBDCliente()
                 self.__banco.CargarBDComercial()
@@ -53,7 +54,7 @@ class PresentadorPrincipal:
                 self.__banco.CargarBDCuentaFF()
                 self.__banco.CargarBDCuentaPF()
         except Exception:
-            self.__vista.mostrar_error("La Base de datos no se cargó correctamente")
+            self.__vista.mostrar_error("Ha ocurrido un error al cargar la Base de Datos")
 
 #Iniciar Gestionar comerciales
     def crud_comerciales(self):
@@ -70,7 +71,7 @@ class PresentadorPrincipal:
         crud_cuentas_ff = PresentadorCuentaFF(self.__banco)
         crud_cuentas_ff.iniciar()
     
-    #Iniciar Gestionar cuentas de Plazo Fijo
+#Iniciar Gestionar cuentas de Plazo Fijo
     def crud_cuentas_pf(self):
         crud_cuentas_pf = PresentadorCuentaPF(self.__banco)
         crud_cuentas_pf.iniciar()
