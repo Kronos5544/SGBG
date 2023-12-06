@@ -443,13 +443,13 @@ class TestBanco(unittest.TestCase):
         self.banco.ingresarCuentaPF(self.cuenta_pf)
         
         self.cuenta_ff.tipo_moneda = "CUC" #Como todas las cuentas tienen el mismo saldo y en CUP, cambio una a CUC para que sea la de mayor saldo
-        self.assertEqual(self.banco.cuentaMayorSaldo().num_cuenta, self.cuenta_ff.num_cuenta) #Comparo si la cuenta retornada es la misma que la cuenta esperada a través del número de cuenta
+        self.assertEqual(self.banco.cuentaMayorSaldo()[1].num_cuenta, self.cuenta_ff.num_cuenta) #Comparo si la cuenta retornada es la misma que la cuenta esperada a través del número de cuenta
 
         self.cuenta_simp.tipo_moneda = "USD" #Cambio la cuenta simple a USD para que sea la de mayor saldo
-        self.assertEqual(self.banco.cuentaMayorSaldo().num_cuenta, self.cuenta_simp.num_cuenta) #Comparo si la cuenta retornada es la misma que la cuenta esperada a través del número de cuenta
+        self.assertEqual(self.banco.cuentaMayorSaldo()[1].num_cuenta, self.cuenta_simp.num_cuenta) #Comparo si la cuenta retornada es la misma que la cuenta esperada a través del número de cuenta
 
         self.cuenta_pf.tipo_moneda = "EUR" #Cambio la cuenta pf a EUR para que sea la de mayor saldo
-        self.assertEqual(self.banco.cuentaMayorSaldo().num_cuenta, self.cuenta_pf.num_cuenta) #Comparo si la cuenta retornada es la misma que la cuenta esperada a través del número de cuenta
+        self.assertEqual(self.banco.cuentaMayorSaldo()[1].num_cuenta, self.cuenta_pf.num_cuenta) #Comparo si la cuenta retornada es la misma que la cuenta esperada a través del número de cuenta
         
 
     def test_cuentas_pf_mas_10_mil_cup(self):

@@ -516,7 +516,10 @@ class Banco():
             cuenta.saldo_cup = cuenta.calcularSaldoCup()
         
         lista_cuentas = sorted(lista_cuentas, key = lambda x : x.saldo_cup) #Ordena las cuentas en orden ascendente teniendo en cuenta el saldo_cup
-        return lista_cuentas[-1] #Devuelve la cuenta en la última posición
+
+        cliente = self.buscarCliente(lista_cuentas[-1].cliente)
+
+        return cliente, lista_cuentas[-1] #Devuelve una tupla con la cuenta en la última posición (mayor saldo) y su respectivo cliente
     
     def cuentasPFmas10MilCUP(self):
         lista_cuentas_pf_mas_10_mil_pesos = []
