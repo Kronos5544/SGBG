@@ -499,9 +499,14 @@ class Banco():
         
     def interesPF5Anios(self):
         lista_cuentas = deepcopy(self.listaCuentaPF) #Para crear una nueva lista idéntica a la lista de cuentas pf y trabajar con ella sin afectar a la original
+        
+        if len(lista_cuentas) == 0:
+            raise Exception("No existen Cuentas de PLazo Fijo en el repositorio")
+        
         for cuenta in lista_cuentas:
             anio = cuenta.fecha_ult_retiro.year - 5
             cuenta.fecha_ult_retiro = cuenta.fecha_ult_retiro.replace(year = anio).isoformat()
+        
         lista = list(map(lambda x : x.calcularInteres(), lista_cuentas))
         return lista
     
@@ -532,6 +537,8 @@ class Banco():
             else:
                 continue
 
+        if len(lista_cuentas_pf_mas_10_mil_pesos) == 0:
+            raise Exception("No existen cuentas de Plazo Fijo con más de 10 mil CUP en el repositorio")
         
         lista_cuentas_pf_mas_10_mil_pesos = sorted(lista_cuentas_pf_mas_10_mil_pesos, key = lambda x : x.num_cuenta) #Ordena las cuentas ascendentemente teniendo en cuenta el num_cuenta
         return lista_cuentas_pf_mas_10_mil_pesos #Devuelve una lista de cuentas PF mayores de 10 mil pesos en orden ascendente teniendo en cuenta el numero de cuenta
