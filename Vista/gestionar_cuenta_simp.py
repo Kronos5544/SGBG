@@ -92,7 +92,7 @@ class GestionarCuentaSimple(QWidget):
         if self.valor_saldo.count(".") > 1:
             raise Exception("El saldo es inválido")
         if not self.valor_saldo.replace(".", "").isdigit():
-            raise Exception("El salario solo puede contener números")
+            raise Exception("El saldo solo puede contener números")
         
 
         

@@ -487,11 +487,20 @@ class Banco():
         indice3 = self.buscarCuentaFF(num)
 
         if indice != None:
+            if self.listaCuentaSimple[indice].saldo < saldo:
+                raise Exception("El monto a retirar no puede ser mayor que el saldo de la cuenta") 
             self.listaCuentaSimple[indice] - saldo
+
         elif indice2 != None:
+            if self.listaCuentaPF[indice2].saldo < saldo:
+                raise Exception("El monto a retirar no puede ser mayor que el saldo de la cuenta")
             self.listaCuentaPF[indice2] - saldo
+            
         elif indice3 != None:
+            if self.listaCuentaFF[indice3].saldo < saldo:
+                raise Exception("El monto a retirar no puede ser mayor que el saldo de la cuenta")
             self.listaCuentaFF[indice3] - saldo
+
         else:
             raise Exception("La cuenta no existe en el repositorio")
         

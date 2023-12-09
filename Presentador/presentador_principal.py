@@ -7,6 +7,7 @@ from Presentador.presentador_cuentas_simples import PresentadorCuentaSimple
 from Presentador.presentador_cuentas_pf import PresentadorCuentaPF
 from Presentador.presentador_cuentas_ff import PresentadorCuentaFF
 from Presentador.presentador_calcular_interes import PresentadorCalcInteres
+from Presentador.presentador_depositar_retirar import PresentadorDepRet
 from Vista.ventana_principal import MainWindow
 from Vista.acerca_de import AcercaDe
 
@@ -81,3 +82,8 @@ class PresentadorPrincipal:
     def calcular_interes(self):
         cualcular_interes = PresentadorCalcInteres(self.__banco)
         cualcular_interes.iniciar()
+
+#Iniciar Depositar y Retirar
+    def depositar_retirar(self):
+        depositar_retirar = PresentadorDepRet(self.__banco)
+        depositar_retirar.iniciar()
