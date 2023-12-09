@@ -16,10 +16,11 @@ class MainWindow(QMainWindow):
         self.actionCuentas_Simples.triggered.connect(self.__presentador.crud_cuentas_simples) #Cargar la ventana de gestión de cuentas simples
         self.actionCuentas_de_Plazo_Fijo.triggered.connect(self.__presentador.crud_cuentas_pf) #Cargar la ventana de gestión de cuentas de plazo fijo
         self.actionCuentas_de_Formacion_de_Fondos.triggered.connect(self.__presentador.crud_cuentas_ff) #Cargar la ventana de gestión de cuentas de Formación de Fondos
-        self.actionCalcular_Interes.triggered.connect(self.__presentador.calcular_interes) #Inicia la ventana de calcular interés
-        self.actionDepositar.triggered.connect(self.__presentador.depositar_retirar) #Inicia la ventana de Depositar y Retirar
-        self.actionInteres_Plazo_Fijo_5a.triggered.connect(self.__presentador.interes_pf_5_anios) #Inicia la ventana de calcular interés pf en 5 años
-        self.actionPropietario_Cuenta_Mayor_Saldo.triggered.connect(self.__presentador.prop_cuenta_may_saldo) #Inicia la ventana del propietarop de la cuenta de mayor saldo
+        self.actionCalcular_Interes.triggered.connect(self.__presentador.calcular_interes) #Cargar la ventana de calcular interés
+        self.actionDepositar.triggered.connect(self.__presentador.depositar_retirar) #Cargar la ventana de Depositar y Retirar
+        self.actionInteres_Plazo_Fijo_5a.triggered.connect(self.__presentador.interes_pf_5_anios) #Cargar la ventana de calcular interés pf en 5 años
+        self.actionPropietario_Cuenta_Mayor_Saldo.triggered.connect(self.__presentador.prop_cuenta_may_saldo) #Cargar la ventana del propietarop de la cuenta de mayor saldo
+        self.actionCuenta_Plazo_Fijo_mas_10mil.triggered.connect(self.__presentador.cuentas_pf_mas_10_mil) #Cargar la ventana de Cuentas PF con más de 10 mil CUP
         self.actionGuardar.triggered.connect(self.__presentador.guardar_BD)
         self.actionCargar.triggered.connect(self.__presentador.cargar_BD)
 

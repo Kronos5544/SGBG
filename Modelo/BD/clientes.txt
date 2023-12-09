@@ -1,5 +1,1 @@
-4
-Marcos Rodríguez Guerra, M, 03031976401, UC Camagüey, Estudiante, 2000.0
-Alejandra Padrón Rivero, F, 02042885400, UC Camagüey, Estudiante, 3500.0
-Marcos Fernández Pérez, M, 03051756700, UC Camagüey, Estudiante, 4500.0
-Jorge Torres Soria, M, 03072540458, UC Camagüey, Estudiante, 5800.0
+0

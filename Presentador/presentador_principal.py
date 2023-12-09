@@ -10,6 +10,7 @@ from Presentador.presentador_calcular_interes import PresentadorCalcInteres
 from Presentador.presentador_depositar_retirar import PresentadorDepRet
 from Presentador.presentador_interes_pf_5a import PresentadorIntPF5Anios
 from Presentador.presentador_prop_cuenta_mayor_saldo import PresentadorPropCuentaMayorSaldo
+from Presentador.presentador_cuentas_pf_mas_10mil import PresentadorCuentasPFMas10milPesos
 from Vista.ventana_principal import MainWindow
 from Vista.acerca_de import AcercaDe
 
@@ -99,3 +100,8 @@ class PresentadorPrincipal:
     def prop_cuenta_may_saldo(self):
         prop_cuenta_may_saldo = PresentadorPropCuentaMayorSaldo(self.__banco)
         prop_cuenta_may_saldo.iniciar()
+
+#Iniciar Lista de Cuentas PF con más de 10 mil pesos
+    def cuentas_pf_mas_10_mil(self):
+        cuentas_pf_mas_10_mil = PresentadorCuentasPFMas10milPesos(self.__banco)
+        cuentas_pf_mas_10_mil.iniciar()
