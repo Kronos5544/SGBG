@@ -16,6 +16,7 @@ class MainWindow(QMainWindow):
         self.actionCuentas_Simples.triggered.connect(self.__presentador.crud_cuentas_simples) #Cargar la ventana de gestión de cuentas simples
         self.actionCuentas_de_Plazo_Fijo.triggered.connect(self.__presentador.crud_cuentas_pf) #Cargar la ventana de gestión de cuentas de plazo fijo
         self.actionCuentas_de_Formacion_de_Fondos.triggered.connect(self.__presentador.crud_cuentas_ff) #Cargar la ventana de gestión de cuentas de Formación de Fondos
+        self.actionCalcular_Interes.triggered.connect(self.__presentador.calcular_interes) #Inicia la ventana de calcular interés
         self.actionGuardar.triggered.connect(self.__presentador.guardar_BD)
         self.actionCargar.triggered.connect(self.__presentador.cargar_BD)
 

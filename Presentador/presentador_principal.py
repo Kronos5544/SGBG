@@ -6,6 +6,7 @@ from Presentador.presentador_comerciales import PresentadorComercial
 from Presentador.presentador_cuentas_simples import PresentadorCuentaSimple
 from Presentador.presentador_cuentas_pf import PresentadorCuentaPF
 from Presentador.presentador_cuentas_ff import PresentadorCuentaFF
+from Presentador.presentador_calcular_interes import PresentadorCalcInteres
 from Vista.ventana_principal import MainWindow
 from Vista.acerca_de import AcercaDe
 
@@ -75,3 +76,8 @@ class PresentadorPrincipal:
     def crud_cuentas_pf(self):
         crud_cuentas_pf = PresentadorCuentaPF(self.__banco)
         crud_cuentas_pf.iniciar()
+
+#Iniciar Calcular Interes
+    def calcular_interes(self):
+        cualcular_interes = PresentadorCalcInteres(self.__banco)
+        cualcular_interes.iniciar()

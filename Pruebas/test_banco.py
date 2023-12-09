@@ -356,9 +356,9 @@ class TestBanco(unittest.TestCase):
         self.banco.ingresarCuentaFF(self.cuenta_ff)
         self.banco.ingresarCuentaPF(self.cuenta_pf)
 
-        self.assertEqual(self.banco.calcularInteresxNum(self.cuenta_simp.num_cuenta), 320)
-        self.assertEqual(self.banco.calcularInteresxNum(self.cuenta_pf.num_cuenta), 640)
-        self.assertEqual(self.banco.calcularInteresxNum(self.cuenta_ff.num_cuenta), 480)
+        self.assertEqual(self.banco.calcularInteresxNum(self.cuenta_simp.num_cuenta), (320, "CUP"))
+        self.assertEqual(self.banco.calcularInteresxNum(self.cuenta_pf.num_cuenta), (640, "CUP"))
+        self.assertEqual(self.banco.calcularInteresxNum(self.cuenta_ff.num_cuenta), (480, "CUP"))
         
     def test_depositar(self):
         self.banco.ingresarCliente(self.cliente)
