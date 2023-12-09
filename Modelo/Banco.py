@@ -169,8 +169,6 @@ class Banco():
     def eliminarCuentaPF(self, num):
         self.__listaCuentaPF = list(filter(lambda x: x.num_cuenta != num, self.__listaCuentaPF))
 
-    def eliminarCuentaSimple(self, num):
-        self.__listaCuentaSimple = list(filter(lambda x: x.num_cuenta != num, self.__listaCuentaSimple))
     
     #La función eliminar cliente tiene la peculiaridad de eliminar también todas las cuentas que correspondan a dicho cliente
     def eliminarCliente(self, ci):
@@ -459,11 +457,11 @@ class Banco():
         indice3 = self.buscarCuentaFF(num)
 
         if indice != None:
-            interes = self.listaCuentaSimple[indice].calcularInteres() 
+            interes = self.listaCuentaSimple[indice].calcularInteres(), self.listaCuentaSimple[indice].tipo_moneda
         elif indice2 != None:
-            interes = self.listaCuentaPF[indice2].calcularInteres()
+            interes = self.listaCuentaPF[indice2].calcularInteres(), self.listaCuentaPF[indice2].tipo_moneda
         elif indice3 != None:
-            interes = self.listaCuentaFF[indice3].calcularInteres()
+            interes = self.listaCuentaFF[indice3].calcularInteres(), self.listaCuentaFF[indice3].tipo_moneda
         else:
             raise Exception("La cuenta no existe en el repositorio")
         
@@ -489,11 +487,20 @@ class Banco():
         indice3 = self.buscarCuentaFF(num)
 
         if indice != None:
+            if self.listaCuentaSimple[indice].saldo < saldo:
+                raise Exception("El monto a retirar no puede ser mayor que el saldo de la cuenta") 
             self.listaCuentaSimple[indice] - saldo
+
         elif indice2 != None:
+            if self.listaCuentaPF[indice2].saldo < saldo:
+                raise Exception("El monto a retirar no puede ser mayor que el saldo de la cuenta")
             self.listaCuentaPF[indice2] - saldo
+            
         elif indice3 != None:
+            if self.listaCuentaFF[indice3].saldo < saldo:
+                raise Exception("El monto a retirar no puede ser mayor que el saldo de la cuenta")
             self.listaCuentaFF[indice3] - saldo
+
         else:
             raise Exception("La cuenta no existe en el repositorio")
         
@@ -523,6 +530,7 @@ class Banco():
         lista_cuentas = sorted(lista_cuentas, key = lambda x : x.saldo_cup) #Ordena las cuentas en orden ascendente teniendo en cuenta el saldo_cup
 
         cliente = self.buscarCliente(lista_cuentas[-1].cliente)
+        cliente = self.listaCliente[cliente]
 
         return cliente, lista_cuentas[-1] #Devuelve una tupla con la cuenta en la última posición (mayor saldo) y su respectivo cliente
     

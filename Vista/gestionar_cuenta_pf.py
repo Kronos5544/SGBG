@@ -18,6 +18,11 @@ class GestionarCuentaPlazoFijo(GestionarCuentaSimple, QWidget):
         self.tabla.setHorizontalHeaderLabels(['Número de cuenta','Cliente', 'Comercial', 'Saldo', 'tipo de moneda', 'fecha de apertura', 'fecha de último retiro', 'Plazo'])
         self.tabla.resizeColumnsToContents()
 
+    def validar_entradas(self):
+        super().validar_entradas()
+        if self.valor_plazo < 1 or self.valor_plazo > 5:
+            raise Exception("El plazo tiene que ser un valor entre 1 y 5")
+
     @property
     def valor_plazo(self):
         return self.spn_plazo.value()

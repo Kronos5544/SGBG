@@ -356,9 +356,9 @@ class TestBanco(unittest.TestCase):
         self.banco.ingresarCuentaFF(self.cuenta_ff)
         self.banco.ingresarCuentaPF(self.cuenta_pf)
 
-        self.assertEqual(self.banco.calcularInteresxNum(self.cuenta_simp.num_cuenta), 320)
-        self.assertEqual(self.banco.calcularInteresxNum(self.cuenta_pf.num_cuenta), 640)
-        self.assertEqual(self.banco.calcularInteresxNum(self.cuenta_ff.num_cuenta), 480)
+        self.assertEqual(self.banco.calcularInteresxNum(self.cuenta_simp.num_cuenta), (320, "CUP"))
+        self.assertEqual(self.banco.calcularInteresxNum(self.cuenta_pf.num_cuenta), (640, "CUP"))
+        self.assertEqual(self.banco.calcularInteresxNum(self.cuenta_ff.num_cuenta), (480, "CUP"))
         
     def test_depositar(self):
         self.banco.ingresarCliente(self.cliente)
@@ -400,6 +400,9 @@ class TestBanco(unittest.TestCase):
         self.banco.retirar(self.cuenta_simp.num_cuenta, 500.00)
         calc_manual = 8000 + round(8000.00 * 0.04, 2) - 500 #Calculando interes y resta manualmente
         self.assertEqual(self.banco.listaCuentaSimple[0].saldo, calc_manual)
+        with self.assertRaises(Exception):
+            self.banco.retirar(self.cuenta_simp.num_cuenta, 70000)
+       
 
         #Probando retirar en cuenta formacion de fondos
         self.assertEqual(self.banco.listaCuentaFF[0].saldo, 8000.00)
@@ -407,11 +410,16 @@ class TestBanco(unittest.TestCase):
         calc_manual = 8000 + round(8000.00 * 0.06, 2) - 700 #Calculando interes y resta manualmente
         self.assertEqual(self.banco.listaCuentaFF[0].saldo, calc_manual)
 
+        with self.assertRaises(Exception):      
+            self.banco.retirar(self.cuenta_ff.num_cuenta, 80000)
+
         #Probando retirar en cuenta de Plazo Fijo
         self.assertEqual(self.banco.listaCuentaPF[0].saldo, 8000.00)
         self.banco.retirar(self.cuenta_pf.num_cuenta, 900.00)
         calc_manual = 8000 + round(8000.00 * 0.08, 2) - 900 #Calculando interes y resta manualmente
         self.assertEqual(self.banco.listaCuentaPF[0].saldo, calc_manual)
+        with self.assertRaises(Exception):
+            self.banco.retirar(self.cuenta_pf.num_cuenta, 40000)
 
         #Probando que lanza error al no encontrar la cuenta
         with self.assertRaises(Exception):

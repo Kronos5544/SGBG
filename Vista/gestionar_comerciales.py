@@ -76,6 +76,9 @@ class GestionarComercial(QWidget):
         if len(self.valor_ci) != 11:
             raise Exception("El Carnet de Identidad tiene que tener 11 números")
         
+        if self.valor_annios_ex > 100:
+            raise Exception("Los años de experiencia no pueden ser mayor que 100")
+        
         
     def vaciar_tabla(self):
         e = self.tabla.rowCount()

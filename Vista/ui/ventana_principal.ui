@@ -221,7 +221,7 @@
   </action>
   <action name="actionDepositar">
    <property name="text">
-    <string>Depositar</string>
+    <string>Depositar y Retirar</string>
    </property>
   </action>
   <action name="actionInteres_Plazo_Fijo_5a">
