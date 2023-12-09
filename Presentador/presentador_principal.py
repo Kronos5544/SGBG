@@ -8,6 +8,7 @@ from Presentador.presentador_cuentas_pf import PresentadorCuentaPF
 from Presentador.presentador_cuentas_ff import PresentadorCuentaFF
 from Presentador.presentador_calcular_interes import PresentadorCalcInteres
 from Presentador.presentador_depositar_retirar import PresentadorDepRet
+from Presentador.presentador_interes_pf_5a import PresentadorIntPF5Anios
 from Vista.ventana_principal import MainWindow
 from Vista.acerca_de import AcercaDe
 
@@ -87,3 +88,8 @@ class PresentadorPrincipal:
     def depositar_retirar(self):
         depositar_retirar = PresentadorDepRet(self.__banco)
         depositar_retirar.iniciar()
+
+#Iniciar Calcular Interes de Cuentas PF en 5 años
+    def interes_pf_5_anios(self):
+        interes_pf_5_anios = PresentadorIntPF5Anios(self.__banco)
+        interes_pf_5_anios.iniciar()
