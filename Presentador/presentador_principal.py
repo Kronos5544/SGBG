@@ -9,6 +9,7 @@ from Presentador.presentador_cuentas_ff import PresentadorCuentaFF
 from Presentador.presentador_calcular_interes import PresentadorCalcInteres
 from Presentador.presentador_depositar_retirar import PresentadorDepRet
 from Presentador.presentador_interes_pf_5a import PresentadorIntPF5Anios
+from Presentador.presentador_prop_cuenta_mayor_saldo import PresentadorPropCuentaMayorSaldo
 from Vista.ventana_principal import MainWindow
 from Vista.acerca_de import AcercaDe
 
@@ -93,3 +94,8 @@ class PresentadorPrincipal:
     def interes_pf_5_anios(self):
         interes_pf_5_anios = PresentadorIntPF5Anios(self.__banco)
         interes_pf_5_anios.iniciar()
+
+#Iniciar Propietario de la cuenta de mayor saldo
+    def prop_cuenta_may_saldo(self):
+        prop_cuenta_may_saldo = PresentadorPropCuentaMayorSaldo(self.__banco)
+        prop_cuenta_may_saldo.iniciar()

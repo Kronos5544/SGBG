@@ -530,6 +530,7 @@ class Banco():
         lista_cuentas = sorted(lista_cuentas, key = lambda x : x.saldo_cup) #Ordena las cuentas en orden ascendente teniendo en cuenta el saldo_cup
 
         cliente = self.buscarCliente(lista_cuentas[-1].cliente)
+        cliente = self.listaCliente[cliente]
 
         return cliente, lista_cuentas[-1] #Devuelve una tupla con la cuenta en la última posición (mayor saldo) y su respectivo cliente
     

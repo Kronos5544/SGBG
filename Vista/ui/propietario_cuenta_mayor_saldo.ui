@@ -6,32 +6,44 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>80</height>
+    <width>480</width>
+    <height>100</height>
    </rect>
   </property>
+  <property name="minimumSize">
+   <size>
+    <width>480</width>
+    <height>100</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>480</width>
+    <height>100</height>
+   </size>
+  </property>
   <property name="windowTitle">
-   <string>Form</string>
+   <string>Cliente con cuenta de mayor saldo</string>
   </property>
   <widget class="QTableWidget" name="tabla">
    <property name="geometry">
     <rect>
      <x>10</x>
      <y>10</y>
-     <width>381</width>
-     <height>61</height>
+     <width>461</width>
+     <height>81</height>
     </rect>
    </property>
    <property name="minimumSize">
     <size>
-     <width>381</width>
-     <height>61</height>
+     <width>0</width>
+     <height>0</height>
     </size>
    </property>
    <property name="maximumSize">
     <size>
-     <width>381</width>
-     <height>61</height>
+     <width>1920</width>
+     <height>1080</height>
     </size>
    </property>
    <property name="editTriggers">

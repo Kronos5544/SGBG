@@ -19,6 +19,7 @@ class MainWindow(QMainWindow):
         self.actionCalcular_Interes.triggered.connect(self.__presentador.calcular_interes) #Inicia la ventana de calcular interés
         self.actionDepositar.triggered.connect(self.__presentador.depositar_retirar) #Inicia la ventana de Depositar y Retirar
         self.actionInteres_Plazo_Fijo_5a.triggered.connect(self.__presentador.interes_pf_5_anios) #Inicia la ventana de calcular interés pf en 5 años
+        self.actionPropietario_Cuenta_Mayor_Saldo.triggered.connect(self.__presentador.prop_cuenta_may_saldo) #Inicia la ventana del propietarop de la cuenta de mayor saldo
         self.actionGuardar.triggered.connect(self.__presentador.guardar_BD)
         self.actionCargar.triggered.connect(self.__presentador.cargar_BD)
 
