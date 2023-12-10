@@ -38,5 +38,6 @@ saldo hay que tener en cuenta el interés acumulado.
 f) Implemente la funcionalidad necesaria para determinar el listado los datos de las cuentas
 de plazo fijo de más de 10000 CUP que sean de un plazo dado y que se muestre el interés
 acumulado, ordenado ascendentemente por el número de la cuenta.
+
 g) Pruebe que las operaciones implementadas en el modelo funcionan correctamente según
 los datos de prueba que usted le entró al programa.
