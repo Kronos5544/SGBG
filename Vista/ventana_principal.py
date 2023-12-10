@@ -2,6 +2,7 @@ from PyQt5.QtWidgets import QMainWindow, QMessageBox
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QPixmap, QPalette, QBrush, QCloseEvent, QResizeEvent
 from PyQt5 import uic
+from PyQt5.QtGui import QIcon
 
 class MainWindow(QMainWindow):
     def __init__(self, presentador):
@@ -9,6 +10,7 @@ class MainWindow(QMainWindow):
         QMainWindow.__init__(self)
         uic.loadUi('Vista/ui/ventana_principal.ui', self)
 
+        self.setWindowIcon(QIcon('Vista/media/icon/gangdec png ico.ico'))
         self.actionSalir.triggered.connect(self.close) #Cerrar ventana al presionar salir
         self.actionAcerca_de.triggered.connect(self.__presentador.acerca_de) #Cargar la ventana acerca de al presionar botón acerca de
         self.actionClientes.triggered.connect(self.__presentador.crud_clientes) #Cargar la ventana de gestión de clientes
