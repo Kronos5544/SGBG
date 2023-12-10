@@ -429,7 +429,7 @@ class TestBanco(unittest.TestCase):
     def test_interes_cuenta_pf_en_5_anios(self):
         #Manda un error si no hay cuentas pf en el banco
         with self.assertRaises(Exception):
-            self.banco.interesPF5Anios()
+            self.banco.interesPF5Anios("2021-05-28")
 
         self.banco.ingresarCliente(self.cliente)
         self.banco.ingresarComercial(self.comercial)
@@ -440,7 +440,10 @@ class TestBanco(unittest.TestCase):
         self.cuenta_pf2.num_cuenta = "032564785412365478"
         self.banco.ingresarCuentaPF(self.cuenta_pf2)
         
-        self.assertEqual(self.banco.interesPF5Anios(), [8000 * 0.08 * 1, 2800 * 0.16 * 5])
+        self.assertEqual(self.banco.interesPF5Anios("2021-05-28")[0], [8000 * 0.08 * 1, 2800 * 0.16 * 5])
+
+        with self.assertRaises(Exception):
+            self.banco.interesPF5Anios("2022-05-14")
 
 
     def test_cuenta_mayor_saldo(self):

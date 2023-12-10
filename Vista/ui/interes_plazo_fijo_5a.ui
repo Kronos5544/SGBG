@@ -6,20 +6,20 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>480</width>
-    <height>191</height>
+    <width>640</width>
+    <height>250</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
-    <width>480</width>
-    <height>191</height>
+    <width>640</width>
+    <height>250</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
-    <width>480</width>
-    <height>191</height>
+    <width>640</width>
+    <height>250</height>
    </size>
   </property>
   <property name="windowTitle">
@@ -29,9 +29,9 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>10</y>
-     <width>461</width>
-     <height>171</height>
+     <y>60</y>
+     <width>621</width>
+     <height>181</height>
     </rect>
    </property>
    <property name="editTriggers">
@@ -40,6 +40,59 @@
    <property name="sortingEnabled">
     <bool>true</bool>
    </property>
+  </widget>
+  <widget class="QWidget" name="horizontalLayoutWidget">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>10</y>
+     <width>621</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <layout class="QHBoxLayout" name="horizontalLayout">
+    <item>
+     <widget class="QLabel" name="label">
+      <property name="text">
+       <string>Fecha de creacion de la cuenta</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QDateEdit" name="fecha_creacion">
+      <property name="maximumDateTime">
+       <datetime>
+        <hour>23</hour>
+        <minute>59</minute>
+        <second>59</second>
+        <year>9999</year>
+        <month>12</month>
+        <day>31</day>
+       </datetime>
+      </property>
+      <property name="displayFormat">
+       <string>yyyy/MM/dd</string>
+      </property>
+      <property name="calendarPopup">
+       <bool>true</bool>
+      </property>
+      <property name="date">
+       <date>
+        <year>2000</year>
+        <month>1</month>
+        <day>1</day>
+       </date>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="btn_mostrar">
+      <property name="text">
+       <string>Mostrar</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
   </widget>
  </widget>
  <resources/>
