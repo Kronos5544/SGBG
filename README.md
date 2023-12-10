@@ -23,12 +23,15 @@ número, teniendo en cuenta que este se calcula de la siguiente forma:
 * Para las cuentas de formación de fondo es de 6% por cada peso por año sin extraer.
 * Para las cuentas de plazo fijo es de 8% por cada peso el primer año y aumenta 2%
 por cada peso por año de plazo fijo hasta los 5 años, que sería 16%.
+
 c) Implemente la funcionalidad necesaria para hacer un depósito en una cuenta dado el
 número de la cuenta y el valor a depositar actualizando el saldo de la cuenta, tenga en cuenta
 que antes de cada depósito se calcula el interés a la cuenta y se le suma si no es a plazo fijo.
+
 d) Implemente la funcionalidad necesaria para determinar a cuánto asciende el interés de
 todas las cuentas de plazo fijo que hay creadas en una fecha dada dentro de los próximos 5
 años.
+
 e) Implemente la funcionalidad necesaria para determinar los datos del propietario de la
 cuenta de mayor saldo estimado en este momento teniendo en cuenta que para estimar el
 saldo hay que tener en cuenta el interés acumulado.
