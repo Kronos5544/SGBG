@@ -504,18 +504,32 @@ class Banco():
         else:
             raise Exception("La cuenta no existe en el repositorio")
         
-    def interesPF5Anios(self):
+    def interesPF5Anios(self, fecha):
         lista_cuentas = deepcopy(self.listaCuentaPF) #Para crear una nueva lista idéntica a la lista de cuentas pf y trabajar con ella sin afectar a la original
-        
+        lista_cuentas_fecha = []
+
         if len(lista_cuentas) == 0:
             raise Exception("No existen Cuentas de PLazo Fijo en el repositorio")
         
         for cuenta in lista_cuentas:
+            if cuenta.fecha_apertura.isoformat() == fecha:
+                lista_cuentas_fecha.append(cuenta)
+
+        if len(lista_cuentas_fecha) == 0:
+            raise Exception("No existen Cuentas de PLazo Fijo con la fecha de creación deseada en el repositorio")
+        
+        for cuenta in lista_cuentas_fecha:
             anio = cuenta.fecha_ult_retiro.year - 5
             cuenta.fecha_ult_retiro = cuenta.fecha_ult_retiro.replace(year = anio).isoformat()
         
-        lista = list(map(lambda x : x.calcularInteres(), lista_cuentas))
-        return lista
+        lista = list(map(lambda x : x.calcularInteres(), lista_cuentas_fecha))
+
+        #Devuelvo la fechas a su valor original
+        for cuenta in lista_cuentas_fecha:
+            anio = cuenta.fecha_ult_retiro.year + 5
+            cuenta.fecha_ult_retiro = cuenta.fecha_ult_retiro.replace(year = anio).isoformat()
+
+        return lista, lista_cuentas_fecha
     
     def cuentaMayorSaldo(self):
         lista_cuentas = deepcopy(self.listaCuentaPF) + deepcopy(self.listaCuentaFF) + deepcopy(self.listaCuentaSimple) #Para crear una nueva lista idéntica a la lista de cuentas pf y trabajar con ella sin afectar a la original
